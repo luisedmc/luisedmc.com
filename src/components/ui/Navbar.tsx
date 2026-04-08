@@ -1,4 +1,5 @@
 import { navItems } from '@/content/navbar';
+import { ThemeSelector } from '@/features/theme/ThemeSelector';
 import { Container } from './Container';
 
 export const Navbar = () => {
@@ -20,7 +21,7 @@ export const Navbar = () => {
 
           <div className="flex items-center gap-2">
             <span>[&mdash;]</span>
-            <span>[Ø]</span>
+            <ThemeSelector />
             <span>[X]</span>
           </div>
         </nav>
