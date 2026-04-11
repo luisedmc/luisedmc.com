@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { ThemeContext } from './context';
 import type { Theme } from './interfaces';
@@ -12,7 +12,7 @@ const getInitialTheme = (): Theme => {
     // localStorage unavailable
   }
   return DEFAULT_THEME;
-}
+};
 
 const applyThemeToDOM = (theme: Theme): void => {
   const doc = document.documentElement;
@@ -21,7 +21,7 @@ const applyThemeToDOM = (theme: Theme): void => {
   if (theme === 'dark') {
     doc.classList.add('dark');
   }
-}
+};
 
 interface IThemeProvider {
   children: ReactNode;
@@ -30,6 +30,10 @@ interface IThemeProvider {
 export const ThemeProvider = ({ children }: IThemeProvider) => {
   const [theme, setThemeState] = useState<Theme>(getInitialTheme);
   const themeRef = useRef<Theme>(theme);
+
+  useLayoutEffect(() => {
+    applyThemeToDOM(themeRef.current);
+  }, []);
 
   const setTheme = useCallback((next: Theme) => {
     themeRef.current = next;
