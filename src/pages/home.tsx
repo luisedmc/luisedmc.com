@@ -1,9 +1,18 @@
 import { Container } from '@/components/ui/Container';
+import { homeContent } from '@/content/home';
 
 export const Home = () => {
+  const { hero, main } = homeContent;
+
   return (
-    <Container customSize={{ width: 'w-178' }} bare>
-      <div className="bg-blue-800">oh shit here we go again www.[redacted].run v3</div>
+    <Container bare customStyle="bg-blue-800">
+      <section>
+        <h1>{hero.title}</h1>
+      </section>
+
+      <section>
+        <p>{main.body}</p>
+      </section>
     </Container>
   );
 };

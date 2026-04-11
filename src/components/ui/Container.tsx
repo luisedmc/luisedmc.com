@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 const sizeClasses = {
   full: 'max-w-full',
-  max: 'max-w-7xl',
+  xl: 'max-w-7xl',
   lg: 'max-w-5xl',
   md: 'max-w-3xl',
   sm: 'max-w-xl',
@@ -18,7 +18,7 @@ interface IContainer {
 
 export const Container = ({
   children,
-  size = 'max',
+  size = 'md',
   customSize,
   customStyle,
   bare = false,
