@@ -27,13 +27,23 @@
 }
 
 @layer components {
+  .alignment-selector,
   .theme-selector {
     color: var(--color-fg);
   }
 
+  .alignment-selector__icon,
   .theme-selector__icon {
     display: block;
     overflow: visible;
+  }
+
+  :root[data-alignment='center'] .ui-container--aligned {
+    margin-inline: auto;
+  }
+
+  :root[data-alignment='end'] .ui-container--aligned {
+    margin-inline-start: auto;
   }
 }
 
