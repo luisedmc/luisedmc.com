@@ -15,7 +15,7 @@ export const ThemeSelector = () => {
       className="theme-selector inline-flex items-center gap-0.5 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
     >
       <span aria-hidden="true">[</span>
-      <Icon aria-hidden="true" className="theme-selector__icon size-[1.05rem] shrink-0" />
+      <Icon aria-hidden="true" className="theme-selector__icon size-[1.2rem] shrink-0" />
       <span aria-hidden="true">]</span>
     </button>
   );

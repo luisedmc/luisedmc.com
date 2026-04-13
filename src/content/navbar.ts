@@ -10,6 +10,6 @@ export const navbarContent = [
   { label: 'm', route: 'me' },
   { label: 'p', route: 'projects' },
   { label: 'w', route: 'writings' },
-  { label: 'b', route: 'books' },
-  { label: 's', route: 'stuff' },
+  // { label: 'b', route: 'books' },
+  // { label: 's', route: 'stuff' },
 ] as const satisfies readonly INavbarItem[];

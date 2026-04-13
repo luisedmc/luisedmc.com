@@ -13,7 +13,6 @@ interface IContainer {
   size?: keyof typeof sizeClasses;
   customSize?: { width?: string; height?: string };
   customStyle?: string;
-  bare?: boolean;
 }
 
 export const Container = ({
@@ -21,13 +20,15 @@ export const Container = ({
   size = 'md',
   customSize,
   customStyle,
-  bare = false,
 }: IContainer) => {
-  return (
-    <div
-      className={`${bare ? '' : 'mx-auto px-4'} ${customSize?.width ?? `w-full ${sizeClasses[size]}`} ${customSize?.height ?? ''} ${customStyle ?? ''}`}
-    >
-      {children}
-    </div>
-  );
+  const className = [
+    'min-w-0 ui-container--aligned p-1',
+    customSize?.width ?? `w-full ${sizeClasses[size]}`,
+    customSize?.height ?? '',
+    customStyle ?? '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return <div className={className}>{children}</div>;
 };
