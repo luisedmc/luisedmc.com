@@ -3,6 +3,7 @@ import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router';
 import { App } from '@/app/App';
 import { routes } from '@/app/routes';
+import { ErrorBoundary, NotFound } from '@/pages/404';
 
 const Home = lazy(() => import('@/pages/home').then(m => ({ default: m.Home })));
 
@@ -10,6 +11,14 @@ export const router = createBrowserRouter([
   {
     path: routes.home,
     Component: App,
-    children: [{ index: true, Component: Home }],
+    children: [
+      {
+        ErrorBoundary,
+        children: [
+          { index: true, Component: Home },
+          { path: '*', Component: NotFound },
+        ],
+      },
+    ],
   },
 ]);
