@@ -5,6 +5,7 @@ export const routes = {
   writings: '/writings',
   // books: '/books',
   // stuff: '/stuff',
+  changelog: '/changelog',
 } as const;
 
 export type RouteId = keyof typeof routes;
