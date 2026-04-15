@@ -6,7 +6,7 @@ export interface INavbarItem {
 }
 
 export const navbarContent = [
-  { label: '@src/www/[redacted].run', route: 'home' },
+  { label: '@/www/[redacted].run', route: 'home' },
   { label: 'm', route: 'me' },
   { label: 'p', route: 'projects' },
   { label: 'w', route: 'writings' },
