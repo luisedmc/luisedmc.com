@@ -2,7 +2,27 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: 'EB Garamond Variable';
+  src: url('/webfonts/eb-garamond/EBGaramond[wdth,wght].woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EB Garamond Variable';
+  src: url('/webfonts/eb-garamond/EBGaramond-Italic[wdth,wght].woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
+  --font-body:
+    'EB Garamond Variable', 'Iowan Old Style', 'Palatino Linotype',
+    'Book Antiqua', Palatino, 'URW Palladio L', Georgia, serif;
+
   --font-sans:
     ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
@@ -56,7 +76,9 @@
   }
 
   body {
-    @apply min-h-screen font-sans;
+    @apply min-h-screen font-body;
+    font-size: 1.146rem;
+    line-height: 1.6;
     background-color: var(--color-bg);
     color: var(--color-fg);
     transition:
