@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,8 +17,19 @@
         const isValidTheme = value => value === 'light' || value === 'dark';
         const isValidAlignment = value =>
           value === 'start' || value === 'center' || value === 'end';
+        const normalizeLocale = value => {
+          if (typeof value !== 'string') return null;
+
+          const normalized = value.toLowerCase();
+
+          if (normalized === 'en-us') return 'en-US';
+          if (normalized === 'pt-br') return 'pt-BR';
+
+          return null;
+        };
         let theme = 'dark';
         let alignment = 'start';
+        let locale = 'en-US';
 
         try {
           const storedTheme = localStorage.getItem('theme');
@@ -28,10 +39,15 @@
           if (isValidAlignment(storedAlignment)) {
             alignment = storedAlignment;
           }
+
+          const storedLocale = normalizeLocale(localStorage.getItem('locale'));
+          if (storedLocale) locale = storedLocale;
         } catch {}
 
         if (theme === 'dark') root.classList.add('dark');
         root.dataset.alignment = alignment;
+        root.lang = locale;
+        root.dir = 'ltr';
       })();
     </script>
 

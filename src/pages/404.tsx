@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
 import { Container } from '@/components/ui/Container';
+import { useDictionary } from '@/features/i18n/hooks';
 
 interface IErrorView {
   title: string;
@@ -29,26 +30,22 @@ const ErrorView = ({ title, subtitle, children, statusLabel }: IErrorView) => {
 };
 
 export const NotFound = () => {
+  const { notFound } = useDictionary('errors');
+
   return (
     <ErrorView
-      statusLabel="HTTP 404 - File not found"
-      subtitle={<p lang="ja">ページが見つかりません。</p>}
-      title="The page cannot be found"
+      statusLabel={notFound.statusLabel}
+      subtitle={<p>{notFound.subtitle}</p>}
+      title={notFound.title}
     >
-      <p lang="ja">
-        お探しのページは削除された可能性がありますので、名前が変更されたか、一時的に利用できなくなりました。
-      </p>
-
-      <p>
-        The page you are looking for might have been removed, had its name changed, or is
-        temporarily unavailable.
-      </p>
+      <p>{notFound.body}</p>
     </ErrorView>
   );
 };
 
 export const ErrorBoundary = () => {
   const error = useRouteError();
+  const { application, route } = useDictionary('errors');
 
   if (isRouteErrorResponse(error)) {
     if (error.status === 404) {
@@ -57,9 +54,9 @@ export const ErrorBoundary = () => {
 
     return (
       <ErrorView
-        statusLabel={`HTTP ${error.status}${error.statusText ? ` - ${error.statusText}` : ''}`}
-        subtitle={<p>An unexpected routing error occurred.</p>}
-        title="Something went wrong"
+        statusLabel={`${route.statusLabelPrefix} ${error.status}${error.statusText ? ` - ${error.statusText}` : ''}`}
+        subtitle={<p>{route.subtitle}</p>}
+        title={route.title}
       >
         {typeof error.data === 'string' ? <p>{error.data}</p> : null}
       </ErrorView>
@@ -68,9 +65,9 @@ export const ErrorBoundary = () => {
 
   return (
     <ErrorView
-      statusLabel="Application error"
-      subtitle={<p>An unexpected application error occurred.</p>}
-      title="Something went wrong"
+      statusLabel={application.statusLabel}
+      subtitle={<p>{application.subtitle}</p>}
+      title={application.title}
     >
       {error instanceof Error ? <p>{error.message}</p> : null}
     </ErrorView>

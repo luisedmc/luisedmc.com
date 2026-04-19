@@ -15,7 +15,11 @@ export const App = () => {
           <Suspense
             fallback={
               <Container>
-                <div aria-label="Loading" className="flex justify-center py-8" role="status">
+                <div
+                  aria-label="Loading"
+                  className="flex justify-center py-8"
+                  role="status"
+                >
                   <LoadingLoopIcon aria-hidden="true" className="size-4 shrink-0" />
                 </div>
               </Container>
