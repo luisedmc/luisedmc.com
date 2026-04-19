@@ -10,12 +10,12 @@ type CacheKey = `${Locale}:${Namespace}`;
 
 const dictionaries = {
   'en-US': {
-    home: () => import('@/content/i18n/en-US/home').then(module => module.dictionary),
-    errors: () => import('@/content/i18n/en-US/errors').then(module => module.dictionary),
+    home: () => import('@/content/i18n/us/home').then(module => module.dictionary),
+    errors: () => import('@/content/i18n/us/errors').then(module => module.dictionary),
   },
   'pt-BR': {
-    home: () => import('@/content/i18n/pt-BR/home').then(module => module.dictionary),
-    errors: () => import('@/content/i18n/pt-BR/errors').then(module => module.dictionary),
+    home: () => import('@/content/i18n/br/home').then(module => module.dictionary),
+    errors: () => import('@/content/i18n/br/errors').then(module => module.dictionary),
   },
 } as const satisfies DictionaryLoaderMap;
 
