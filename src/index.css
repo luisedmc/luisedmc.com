@@ -20,8 +20,7 @@
 
 @theme {
   --font-body:
-    'EB Garamond Variable', 'Iowan Old Style', 'Palatino Linotype',
-    'Book Antiqua', Palatino, 'URW Palladio L', Georgia, serif;
+    'EB Garamond Variable', serif;
 
   --font-sans:
     ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -48,11 +47,13 @@
 
 @layer components {
   .alignment-selector,
+  .locale-selector,
   .theme-selector {
     color: var(--color-fg);
   }
 
   .alignment-selector__icon,
+  .locale-selector__icon,
   .theme-selector__icon {
     display: block;
     overflow: visible;

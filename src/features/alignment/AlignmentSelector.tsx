@@ -16,6 +16,12 @@ const alignmentIcons = {
   end: AlignRightIcon,
 } as const;
 
+const alignmentLabels: Record<Alignment, string> = {
+  start: 'Switch to left alignment',
+  center: 'Switch to centered alignment',
+  end: 'Switch to right alignment',
+};
+
 export const AlignmentSelector = () => {
   const { alignment, switchAlignment } = useAlignment();
   const Icon = alignmentIcons[alignment];
@@ -24,14 +30,11 @@ export const AlignmentSelector = () => {
     <button
       type="button"
       onClick={switchAlignment}
-      aria-label={`Switch to ${nextAlignment[alignment]} alignment`}
+      aria-label={alignmentLabels[nextAlignment[alignment]]}
       className="alignment-selector inline-flex items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
     >
       <span aria-hidden="true">[</span>
-      <Icon
-        aria-hidden="true"
-        className="alignment-selector__icon size-6 shrink-0"
-      />
+      <Icon aria-hidden="true" className="alignment-selector__icon size-6 shrink-0" />
       <span aria-hidden="true">]</span>
     </button>
   );
