@@ -9,11 +9,14 @@ type Particle = {
 };
 
 const BASE_PARTICLE_COUNT = 2800;
-const PIXELS_PER_PREVIOUS_PIXEL = 4;
+const PIXELS_PER_PREVIOUS_PIXEL = 1;
 const PARTICLE_COUNT = BASE_PARTICLE_COUNT * PIXELS_PER_PREVIOUS_PIXEL;
 const BASE_WIDTH = 768;
 const BASE_HEIGHT = 192;
 const PIXEL_SIZE = 1;
+const TARGET_FPS = 60;
+const FRAME_INTERVAL = 1000 / TARGET_FPS;
+const VIEWPORT_PRELOAD_MARGIN = 128;
 
 const createRandom = (seed: number) => {
   let value = seed;
@@ -46,6 +49,17 @@ const particles = createParticles();
 const getParticleColor = () =>
   document.documentElement.classList.contains('dark') ? '#ffffff' : '#000000';
 
+const isElementNearViewport = (element: HTMLElement) => {
+  const rect = element.getBoundingClientRect();
+
+  return (
+    rect.bottom >= -VIEWPORT_PRELOAD_MARGIN &&
+    rect.top <= window.innerHeight + VIEWPORT_PRELOAD_MARGIN &&
+    rect.right >= -VIEWPORT_PRELOAD_MARGIN &&
+    rect.left <= window.innerWidth + VIEWPORT_PRELOAD_MARGIN
+  );
+};
+
 const drawParticleWave = (
   context: CanvasRenderingContext2D,
   width: number,
@@ -75,20 +89,24 @@ const drawParticleWave = (
 
     const drift = (particle.x + time * particle.speed) % 1;
     const x = Math.round(drift * width);
+
     const wave =
       Math.sin(drift * Math.PI * 2.45 + time * 1.75 + particle.phase) * amplitude +
       Math.sin(drift * Math.PI * 6.1 - time * 0.8 + particle.phase * 0.35) *
         amplitude *
         0.22;
+
     const y = Math.round(
       centerY +
         wave +
         (particle.y - 0.5) * streamHeight +
         Math.sin(time * 2.2 + particle.phase) * height * 0.018,
     );
+
     const edgeFade = Math.min(1, drift * 8, (1 - drift) * 8);
     const flicker = Math.sin(noiseFrame * 0.9 + particle.phase * 4.2) > 0.82 ? 0.64 : 1;
     const brightness = particle.brightness * edgeFade * flicker;
+
     const dither = Math.sin((x * 12.9898 + y * 78.233 + noiseFrame) * 43758.5453) % 1;
     const threshold = 0.22 + Math.abs(dither) * 0.44;
 
@@ -120,6 +138,7 @@ export const ParticleWave = () => {
     }
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       const width = Math.max(1, Math.round(rect.width / PIXEL_SIZE));
@@ -127,6 +146,7 @@ export const ParticleWave = () => {
 
       canvas.width = width;
       canvas.height = height;
+
       context.setTransform(1, 0, 0, 1, 0, 0);
       context.imageSmoothingEnabled = false;
 
@@ -135,12 +155,10 @@ export const ParticleWave = () => {
 
     let size = resize();
     let particleColor = getParticleColor();
-
-    const resizeObserver = new ResizeObserver(() => {
-      size = resize();
-    });
+    let isNearViewport = isElementNearViewport(canvas);
 
     const startedAt = performance.now();
+    let lastDrawAt = startedAt - FRAME_INTERVAL;
 
     const drawFrame = (now: number) => {
       drawParticleWave(
@@ -152,36 +170,110 @@ export const ParticleWave = () => {
       );
     };
 
-    const themeObserver = new MutationObserver(() => {
-      particleColor = getParticleColor();
+    const stopAnimation = () => {
+      if (frameRef.current === undefined) {
+        return;
+      }
 
-      if (motionQuery.matches) {
+      cancelAnimationFrame(frameRef.current);
+      frameRef.current = undefined;
+    };
+
+    const animate = (now: number) => {
+      frameRef.current = undefined;
+
+      if (!isNearViewport || motionQuery.matches) {
+        return;
+      }
+
+      if (now - lastDrawAt >= FRAME_INTERVAL) {
+        lastDrawAt = now - ((now - lastDrawAt) % FRAME_INTERVAL);
+        drawFrame(now);
+      }
+
+      frameRef.current = requestAnimationFrame(animate);
+    };
+
+    const startAnimation = () => {
+      if (motionQuery.matches || !isNearViewport || frameRef.current !== undefined) {
+        return;
+      }
+
+      frameRef.current = requestAnimationFrame(animate);
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      size = resize();
+
+      if (motionQuery.matches && isNearViewport) {
         drawFrame(performance.now());
       }
     });
 
-    const animate = (now: number) => {
-      drawFrame(now);
+    const themeObserver = new MutationObserver(() => {
+      particleColor = getParticleColor();
 
-      if (!motionQuery.matches) {
-        frameRef.current = requestAnimationFrame(animate);
+      if (motionQuery.matches && isNearViewport) {
+        drawFrame(performance.now());
       }
+    });
+
+    const viewportObserver = new IntersectionObserver(
+      ([entry]) => {
+        isNearViewport = entry?.isIntersecting ?? false;
+
+        if (isNearViewport) {
+          const now = performance.now();
+
+          drawFrame(now);
+          lastDrawAt = now;
+          startAnimation();
+          return;
+        }
+
+        stopAnimation();
+      },
+      {
+        rootMargin: `${VIEWPORT_PRELOAD_MARGIN}px 0px`,
+        threshold: 0,
+      },
+    );
+
+    const handleMotionChange = () => {
+      if (motionQuery.matches) {
+        stopAnimation();
+
+        if (isNearViewport) {
+          drawFrame(performance.now());
+        }
+
+        return;
+      }
+
+      startAnimation();
     };
 
     resizeObserver.observe(canvas);
+    viewportObserver.observe(canvas);
+
     themeObserver.observe(document.documentElement, {
       attributeFilter: ['class'],
       attributes: true,
     });
-    animate(startedAt);
+
+    motionQuery.addEventListener('change', handleMotionChange);
+
+    if (isNearViewport) {
+      drawFrame(startedAt);
+      startAnimation();
+    }
 
     return () => {
       resizeObserver.disconnect();
       themeObserver.disconnect();
-
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
+      viewportObserver.disconnect();
+      motionQuery.removeEventListener('change', handleMotionChange);
+      stopAnimation();
     };
   }, []);
 
