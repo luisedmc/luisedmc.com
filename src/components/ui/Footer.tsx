@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <footer>
       <Container size="full" customStyle="flex justify-end">
-        <Link className="text-xs" to={routes.changelog}>
+        <Link className="text-sm" to={routes.changelog}>
           changelog
         </Link>
       </Container>
