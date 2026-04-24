@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>mhp favicon</title>
+  <defs>
+    <radialGradient id="planet" cx="35%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#174fba" />
+      <stop offset="0.52" stop-color="#0b327f" />
+      <stop offset="1" stop-color="#041238" />
+    </radialGradient>
+  </defs>
+
+  <circle cx="32" cy="32" r="30" fill="url(#planet)" />
+</svg>
