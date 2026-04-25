@@ -1,12 +1,179 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>mhp favicon</title>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      .tone-a {
+        animation: tone-a 8s linear infinite;
+      }
+
+      .tone-b {
+        animation: tone-b 8s linear infinite;
+      }
+
+      .tone-c {
+        animation: tone-c 8s linear infinite;
+      }
+
+      .tone-d {
+        animation: tone-d 8s linear infinite;
+      }
+
+      .cyan-core {
+        animation: cyan-core 8s linear infinite;
+      }
+
+      .deep-core {
+        animation: deep-core 8s linear infinite;
+      }
+
+      .night-left {
+        animation: night-left 8s linear infinite;
+      }
+
+      .night-right {
+        animation: night-right 8s linear infinite;
+      }
+    }
+
+    @keyframes tone-a {
+      0%,
+      100% {
+        stop-color: #01030f;
+      }
+
+      33% {
+        stop-color: #081f6b;
+      }
+
+      66% {
+        stop-color: #2448c8;
+      }
+    }
+
+    @keyframes tone-b {
+      0%,
+      100% {
+        stop-color: #081f6b;
+      }
+
+      33% {
+        stop-color: #2448c8;
+      }
+
+      66% {
+        stop-color: #03091f;
+      }
+    }
+
+    @keyframes tone-c {
+      0%,
+      100% {
+        stop-color: #3f66e8;
+      }
+
+      33% {
+        stop-color: #07164b;
+      }
+
+      66% {
+        stop-color: #183aa8;
+      }
+    }
+
+    @keyframes tone-d {
+      0%,
+      100% {
+        stop-color: #050f33;
+      }
+
+      33% {
+        stop-color: #3f66e8;
+      }
+
+      66% {
+        stop-color: #01030f;
+      }
+    }
+
+    @keyframes cyan-core {
+      0%,
+      100% {
+        stop-opacity: 0.42;
+      }
+
+      50% {
+        stop-opacity: 0.08;
+      }
+    }
+
+    @keyframes deep-core {
+      0%,
+      100% {
+        stop-opacity: 0.42;
+      }
+
+      50% {
+        stop-opacity: 0.88;
+      }
+    }
+
+    @keyframes night-left {
+      0%,
+      100% {
+        stop-opacity: 0.24;
+      }
+
+      50% {
+        stop-opacity: 0.74;
+      }
+    }
+
+    @keyframes night-right {
+      0%,
+      100% {
+        stop-opacity: 0.84;
+      }
+
+      50% {
+        stop-opacity: 0.28;
+      }
+    }
+  </style>
   <defs>
-    <radialGradient id="planet" cx="35%" cy="30%" r="72%">
-      <stop offset="0" stop-color="#174fba" />
-      <stop offset="0.52" stop-color="#0b327f" />
-      <stop offset="1" stop-color="#041238" />
+    <linearGradient id="planet" x1="0" x2="1" y1="1" y2="0">
+      <stop class="tone-a" offset="0" stop-color="#01030f" />
+      <stop class="tone-b" offset="0.34" stop-color="#081f6b" />
+      <stop class="tone-c" offset="0.68" stop-color="#3f66e8" />
+      <stop class="tone-d" offset="1" stop-color="#050f33" />
+    </linearGradient>
+    <radialGradient id="cyan-cloud" cx="20%" cy="18%" r="74%">
+      <stop class="cyan-core" offset="0" stop-color="#7fa0ff" stop-opacity="0.42" />
+      <stop offset="0.46" stop-color="#325ee8" stop-opacity="0.2" />
+      <stop offset="1" stop-color="#325ee8" stop-opacity="0" />
     </radialGradient>
+    <radialGradient id="deep-cloud" cx="76%" cy="76%" r="78%">
+      <stop class="deep-core" offset="0" stop-color="#000107" stop-opacity="0.42" />
+      <stop offset="0.58" stop-color="#010721" stop-opacity="0.58" />
+      <stop offset="1" stop-color="#010721" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="sphere-light" cx="34%" cy="28%" r="75%">
+      <stop offset="0" stop-color="#b8c9ff" stop-opacity="0.1" />
+      <stop offset="0.42" stop-color="#b8c9ff" stop-opacity="0" />
+      <stop offset="0.78" stop-color="#000209" stop-opacity="0.34" />
+      <stop offset="1" stop-color="#000209" stop-opacity="0.84" />
+    </radialGradient>
+    <linearGradient id="hidden-side" x1="0" x2="1" y1="0" y2="0">
+      <stop class="night-left" offset="0" stop-color="#000209" stop-opacity="0.24" />
+      <stop offset="0.32" stop-color="#000209" stop-opacity="0" />
+      <stop offset="0.68" stop-color="#000209" stop-opacity="0" />
+      <stop class="night-right" offset="1" stop-color="#000209" stop-opacity="0.84" />
+    </linearGradient>
   </defs>
 
+  <circle cx="32" cy="32" r="32" fill="#01030f" />
   <circle cx="32" cy="32" r="32" fill="url(#planet)" />
+  <circle cx="32" cy="32" r="32" fill="url(#cyan-cloud)" />
+  <circle cx="32" cy="32" r="32" fill="url(#deep-cloud)" />
+  <circle cx="32" cy="32" r="32" fill="url(#hidden-side)" />
+  <circle cx="32" cy="32" r="32" fill="url(#sphere-light)" />
 </svg>
