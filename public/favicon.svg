@@ -8,5 +8,5 @@
     </radialGradient>
   </defs>
 
-  <circle cx="32" cy="32" r="30" fill="url(#planet)" />
+  <circle cx="32" cy="32" r="32" fill="url(#planet)" />
 </svg>
