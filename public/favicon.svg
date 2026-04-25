@@ -18,8 +18,12 @@
         animation: tone-d 8s linear infinite;
       }
 
-      .cyan-core {
-        animation: cyan-core 8s linear infinite;
+      .sheen-bright {
+        animation: sheen-bright 8s linear infinite;
+      }
+
+      .sheen-shadow {
+        animation: sheen-shadow 8s linear infinite;
       }
 
       .deep-core {
@@ -38,71 +42,82 @@
     @keyframes tone-a {
       0%,
       100% {
-        stop-color: #01030f;
+        stop-color: #000209;
       }
 
       33% {
-        stop-color: #081f6b;
+        stop-color: #0a2a98;
       }
 
       66% {
-        stop-color: #2448c8;
+        stop-color: #3b55e0;
       }
     }
 
     @keyframes tone-b {
       0%,
       100% {
-        stop-color: #081f6b;
+        stop-color: #0a2a98;
       }
 
       33% {
-        stop-color: #2448c8;
+        stop-color: #4d68ff;
       }
 
       66% {
-        stop-color: #03091f;
+        stop-color: #010518;
       }
     }
 
     @keyframes tone-c {
       0%,
       100% {
-        stop-color: #3f66e8;
+        stop-color: #4d68ff;
       }
 
       33% {
-        stop-color: #07164b;
+        stop-color: #071346;
       }
 
       66% {
-        stop-color: #183aa8;
+        stop-color: #1c3bc1;
       }
     }
 
     @keyframes tone-d {
       0%,
       100% {
-        stop-color: #050f33;
+        stop-color: #030b2b;
       }
 
       33% {
-        stop-color: #3f66e8;
+        stop-color: #5b75ff;
       }
 
       66% {
-        stop-color: #01030f;
+        stop-color: #000209;
       }
     }
 
-    @keyframes cyan-core {
+    @keyframes sheen-bright {
       0%,
       100% {
-        stop-opacity: 0.42;
+        stop-opacity: 0.34;
       }
 
       50% {
         stop-opacity: 0.08;
+      }
+    }
+
+    @keyframes sheen-shadow {
+      0%,
+      100% {
+        stop-opacity: 0.1;
+      }
+
+      50% {
+        stop-opacity: 0.46;
       }
     }
 
@@ -141,24 +156,25 @@
   </style>
   <defs>
     <linearGradient id="planet" x1="0" x2="1" y1="1" y2="0">
-      <stop class="tone-a" offset="0" stop-color="#01030f" />
-      <stop class="tone-b" offset="0.34" stop-color="#081f6b" />
-      <stop class="tone-c" offset="0.68" stop-color="#3f66e8" />
-      <stop class="tone-d" offset="1" stop-color="#050f33" />
+      <stop class="tone-a" offset="0" stop-color="#000209" />
+      <stop class="tone-b" offset="0.34" stop-color="#0a2a98" />
+      <stop class="tone-c" offset="0.68" stop-color="#4d68ff" />
+      <stop class="tone-d" offset="1" stop-color="#030b2b" />
     </linearGradient>
-    <radialGradient id="cyan-cloud" cx="20%" cy="18%" r="74%">
-      <stop class="cyan-core" offset="0" stop-color="#7fa0ff" stop-opacity="0.42" />
-      <stop offset="0.46" stop-color="#325ee8" stop-opacity="0.2" />
-      <stop offset="1" stop-color="#325ee8" stop-opacity="0" />
-    </radialGradient>
+    <linearGradient id="blue-sheen" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#2746d6" stop-opacity="0" />
+      <stop class="sheen-bright" offset="0.45" stop-color="#5d78ff" stop-opacity="0.34" />
+      <stop class="sheen-shadow" offset="0.78" stop-color="#000209" stop-opacity="0.1" />
+      <stop offset="1" stop-color="#000209" stop-opacity="0" />
+    </linearGradient>
     <radialGradient id="deep-cloud" cx="76%" cy="76%" r="78%">
       <stop class="deep-core" offset="0" stop-color="#000107" stop-opacity="0.42" />
       <stop offset="0.58" stop-color="#010721" stop-opacity="0.58" />
       <stop offset="1" stop-color="#010721" stop-opacity="0" />
     </radialGradient>
     <radialGradient id="sphere-light" cx="34%" cy="28%" r="75%">
-      <stop offset="0" stop-color="#b8c9ff" stop-opacity="0.1" />
-      <stop offset="0.42" stop-color="#b8c9ff" stop-opacity="0" />
+      <stop offset="0" stop-color="#3954d8" stop-opacity="0.08" />
+      <stop offset="0.42" stop-color="#3954d8" stop-opacity="0" />
       <stop offset="0.78" stop-color="#000209" stop-opacity="0.34" />
       <stop offset="1" stop-color="#000209" stop-opacity="0.84" />
     </radialGradient>
@@ -170,9 +186,9 @@
     </linearGradient>
   </defs>
 
-  <circle cx="32" cy="32" r="32" fill="#01030f" />
+  <circle cx="32" cy="32" r="32" fill="#000209" />
   <circle cx="32" cy="32" r="32" fill="url(#planet)" />
-  <circle cx="32" cy="32" r="32" fill="url(#cyan-cloud)" />
+  <circle cx="32" cy="32" r="32" fill="url(#blue-sheen)" />
   <circle cx="32" cy="32" r="32" fill="url(#deep-cloud)" />
   <circle cx="32" cy="32" r="32" fill="url(#hidden-side)" />
   <circle cx="32" cy="32" r="32" fill="url(#sphere-light)" />
