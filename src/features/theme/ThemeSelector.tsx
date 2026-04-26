@@ -1,5 +1,6 @@
 import MoonAltLoopIcon from '~icons/line-md/moon-alt-loop';
 import SunnyOutlineLoopIcon from '~icons/line-md/sunny-outline-loop';
+import { Tooltip } from '@/components/ui/Tooltip';
 import { useTheme } from './hooks';
 
 const themeLabels = {
@@ -19,9 +20,12 @@ export const ThemeSelector = () => {
       aria-label={themeLabels[nextTheme]}
       className="theme-selector inline-flex cursor-pointer items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
     >
-      {/* <span aria-hidden="true">[</span> */}
-      <Icon aria-hidden="true" className="theme-selector__icon size-6 shrink-0" />
-      {/* <span aria-hidden="true">]</span> */}
+      <Tooltip
+        Icon={<Icon />}
+        tooltipContent={themeLabels[nextTheme]}
+        className="theme-selector__icon size-6 shrink-0"
+        orientation="bottom"
+      />
     </button>
   );
 };

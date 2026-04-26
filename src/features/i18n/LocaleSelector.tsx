@@ -1,4 +1,5 @@
 import CompassLoopIcon from '~icons/line-md/compass-loop';
+import { Tooltip } from '@/components/ui/Tooltip';
 import { useLocale } from './hooks';
 import { switchLocale } from './store';
 import type { Locale } from './types';
@@ -24,12 +25,12 @@ export const LocaleSelector = () => {
       aria-label={localeLabels[upcomingLocale]}
       className="locale-selector inline-flex cursor-pointer items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
     >
-      {/* <span aria-hidden="true">[</span> */}
-      <CompassLoopIcon
-        aria-hidden="true"
+      <Tooltip
+        Icon={<CompassLoopIcon />}
+        tooltipContent={localeLabels[upcomingLocale]}
         className="locale-selector__icon size-6 shrink-0"
+        orientation="bottom"
       />
-      {/* <span aria-hidden="true">]</span> */}
     </button>
   );
 };

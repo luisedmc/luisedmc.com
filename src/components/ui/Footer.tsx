@@ -8,6 +8,7 @@ import LinkedinIcon from '~icons/line-md/linkedin';
 // import { routes } from '@/app/routes';
 import { socialLinks } from '@/content/social';
 import { Container } from './Container';
+import { Tooltip } from './Tooltip';
 
 const socialIcons = {
   github: GithubIcon,
@@ -33,7 +34,11 @@ export const Footer = () => {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <Icon aria-hidden="true" className="size-5 shrink-0" />
+                <Tooltip
+                  Icon={<Icon />}
+                  tooltipContent={label}
+                  className="size-5 shrink-0"
+                />
               </a>
             );
           })}
