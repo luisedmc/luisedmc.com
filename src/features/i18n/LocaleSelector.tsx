@@ -22,14 +22,14 @@ export const LocaleSelector = () => {
       type="button"
       onClick={switchLocale}
       aria-label={localeLabels[upcomingLocale]}
-      className="locale-selector inline-flex items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
+      className="locale-selector inline-flex cursor-pointer items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
     >
-      <span aria-hidden="true">[</span>
+      {/* <span aria-hidden="true">[</span> */}
       <CompassLoopIcon
         aria-hidden="true"
         className="locale-selector__icon size-6 shrink-0"
       />
-      <span aria-hidden="true">]</span>
+      {/* <span aria-hidden="true">]</span> */}
     </button>
   );
 };

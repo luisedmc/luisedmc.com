@@ -10,11 +10,13 @@ export const Navbar = () => {
   const [src] = navbarContent;
 
   return (
-    <Container size="full">
+    <Container>
       <header>
-        <nav className="flex min-h-12.5 items-center justify-between gap-1 px-3 py-2 text-md font-bold sm:gap-2 sm:text-lg">
-          <Link to={routes[src.route]}>{src.label}</Link>
-          <div className="flex items-center gap-1 sm:gap-2">
+        <nav className="flex min-h-12.5 items-center justify-between pt-2">
+          <Link className="flex cursor-pointer items-center" to={routes[src.route]}>
+            <img src="/favicon.svg" alt="" className="size-6 shrink-0" />
+          </Link>
+          <div className="flex items-center gap-2 sm:gap-4">
             <LocaleSelector />
             <AlignmentSelector />
             <ThemeSelector />

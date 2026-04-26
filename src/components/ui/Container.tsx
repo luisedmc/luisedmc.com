@@ -22,7 +22,7 @@ export const Container = ({
   customStyle,
 }: IContainer) => {
   const className = [
-    'min-w-0 ui-container--aligned p-1',
+    'min-w-0 ui-container--aligned p-1 px-3',
     customSize?.width ?? `w-full ${sizeClasses[size]}`,
     customSize?.height ?? '',
     customStyle ?? '',
