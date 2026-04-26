@@ -1,7 +1,7 @@
 // import { Link } from 'react-router';
 import ComputerIcon from '~icons/line-md/computer';
 import EmailIcon from '~icons/line-md/email';
-import FileIcon from '~icons/line-md/file';
+import LineMdFileDocument from '~icons/line-md/file-document';
 import GithubIcon from '~icons/line-md/github';
 import HeartIcon from '~icons/line-md/heart';
 import LinkedinIcon from '~icons/line-md/linkedin';
@@ -14,13 +14,13 @@ const socialIcons = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
   email: EmailIcon,
-  resume: FileIcon,
+  resume: LineMdFileDocument,
 } as const;
 
 export const Footer = () => {
   return (
     <footer>
-      <Container size="full" customStyle="flex flex-col items-center gap-1 py-2">
+      <Container size="full" customStyle="flex flex-col items-center gap-1 mt-8 pb-2">
         <nav aria-label="Social links" className="flex items-center justify-center gap-1">
           {socialLinks.map(({ href, id, label }) => {
             const Icon = socialIcons[id];
@@ -43,7 +43,7 @@ export const Footer = () => {
             );
           })}
         </nav>
-        <div className="flex flex-col items-center justify-center gap-0.5 text-sm text-fg-muted">
+        <div className="flex flex-col items-center justify-center gap-0.5 text-center text-sm text-fg-muted">
           <span className="inline-flex items-center gap-1">
             Made with
             <HeartIcon aria-hidden="true" className="size-4 shrink-0" />

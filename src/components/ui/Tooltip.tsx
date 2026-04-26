@@ -63,7 +63,7 @@ export const Tooltip = (props: TooltipProps) => {
     .join(' ');
 
   const tooltipClassNames = [
-    'pointer-events-none absolute z-20 whitespace-nowrap rounded-[2px] bg-[#0a0a0a] px-3 py-2 font-sans text-[12px] leading-none text-white opacity-0 shadow-[0_6px_16px_rgb(0_0_0/0.35)] transition-opacity duration-150 group-hover/tooltip:opacity-100 group-focus-visible/tooltip:opacity-100',
+    'pointer-events-none absolute z-20 hidden whitespace-nowrap rounded-[2px] bg-[#0a0a0a] px-3 py-2 font-sans text-[12px] leading-none text-white opacity-0 shadow-[0_6px_16px_rgb(0_0_0/0.35)] transition-opacity duration-150 group-hover/tooltip:block group-hover/tooltip:opacity-100 group-focus-visible/tooltip:block group-focus-visible/tooltip:opacity-100',
     tooltipOrientationClassNames[orientation],
     tooltipClassName ?? '',
   ]

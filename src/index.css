@@ -19,11 +19,11 @@
 }
 
 @theme {
-  --font-body: 'EB Garamond Variable', serif;
+  /* --font-body: 'EB Garamond Variable', serif; */
 
-  --font-sans:
-    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-body:
+    system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
   --color-bg: #ffffff;
   --color-bg-variant: #f5f5f5;
@@ -77,13 +77,24 @@
 
   body {
     @apply min-h-screen font-body;
-    font-size: 1.146rem;
+    font-size: 0.99rem;
     line-height: 1.6;
     background-color: var(--color-bg);
     color: var(--color-fg);
     transition:
       background-color 150ms ease,
       color 150ms ease;
+  }
+
+  a {
+    color: var(--color-fg);
+    text-decoration-line: underline;
+    text-underline-offset: 0.28rem;
+    transition: color 150ms ease;
+  }
+
+  a:hover {
+    color: var(--color-fg-muted);
   }
 
   *,

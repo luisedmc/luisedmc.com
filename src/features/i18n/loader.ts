@@ -52,9 +52,11 @@ export const loadDictionary = <N extends Namespace>(
 
   const dictionaryPromise = dictionaries[locale][namespace]()
     .then(dictionary => {
-      resolvedCache.set(cacheKey, dictionary);
+      const resolvedDictionary = dictionary as DictionaryFor<N>;
+
+      resolvedCache.set(cacheKey, resolvedDictionary);
       inflightCache.delete(cacheKey);
-      return dictionary;
+      return resolvedDictionary;
     })
     .catch((error: unknown) => {
       inflightCache.delete(cacheKey);

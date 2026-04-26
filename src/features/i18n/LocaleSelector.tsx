@@ -1,4 +1,4 @@
-import CompassLoopIcon from '~icons/line-md/compass-loop';
+import LineMdMapMarkerAltLoop from '~icons/line-md/map-marker-alt-loop';
 import { Tooltip } from '@/components/ui/Tooltip';
 import { useLocale } from './hooks';
 import { switchLocale } from './store';
@@ -26,7 +26,7 @@ export const LocaleSelector = () => {
       className="locale-selector inline-flex cursor-pointer items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
     >
       <Tooltip
-        Icon={<CompassLoopIcon />}
+        Icon={<LineMdMapMarkerAltLoop />}
         tooltipContent={localeLabels[upcomingLocale]}
         className="locale-selector__icon size-6 shrink-0"
         orientation="bottom"
