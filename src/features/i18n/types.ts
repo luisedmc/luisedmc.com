@@ -2,12 +2,39 @@ export type Locale = 'en-US' | 'pt-BR';
 export type Namespace = 'home' | 'errors';
 
 export interface HomeDictionary {
-  hero: {
+  me: {
     title: string;
-    subtitle: string;
+    items: readonly string[];
+    games: {
+      prefix: string;
+      cs2Label: string;
+      suffix: string;
+    };
   };
-  main: {
-    body: string;
+  experience: {
+    title: string;
+    roles: {
+      name: string;
+      company: string;
+      period: string;
+      current: boolean;
+    }[];
+  };
+  projects: {
+    title: string;
+    projects: {
+      name: string;
+      description: string;
+      link: string;
+    }[];
+  };
+  configs: {
+    title: string;
+    configurations: {
+      name: string;
+      description: string;
+      link: string;
+    }[];
   };
 }
 
