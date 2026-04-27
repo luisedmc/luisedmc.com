@@ -20,7 +20,7 @@ const socialIcons = {
 export const Footer = () => {
   return (
     <footer>
-      <Container size="full" customStyle="flex flex-col items-center gap-1 mt-8 pb-2">
+      <Container customStyle="mt-8 flex flex-col items-center gap-1 pb-2">
         <nav aria-label="Social links" className="flex items-center justify-center gap-1">
           {socialLinks.map(({ href, id, label }) => {
             const Icon = socialIcons[id];
