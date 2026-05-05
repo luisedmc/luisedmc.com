@@ -79,9 +79,11 @@ export const Home = () => {
         <div className="space-y-4">
           {projects.projects.map(project => (
             <p key={project.name} className="flex items-baseline gap-2">
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                {project.name}
-              </a>
+              <Tooltip
+                href={project.link}
+                linkLabel={project.name}
+                tooltipContent={project.link}
+              />
               <span
                 aria-hidden="true"
                 className="mb-1 min-w-4 flex-1 border-b border-dotted border-fg-muted/40"
@@ -106,9 +108,11 @@ export const Home = () => {
         <div className="space-y-4">
           {configs.configurations.map(config => (
             <p key={config.name} className="flex items-baseline gap-2">
-              <a href={config.link} target="_blank" rel="noopener noreferrer">
-                {config.name}
-              </a>
+              <Tooltip
+                href={config.link}
+                linkLabel={config.name}
+                tooltipContent={config.link}
+              />
               <span
                 aria-hidden="true"
                 className="mb-1 min-w-4 flex-1 border-b border-dotted border-fg-muted/40"

@@ -1,4 +1,5 @@
 import {
+  type AnchorHTMLAttributes,
   cloneElement,
   type ComponentType,
   isValidElement,
@@ -11,6 +12,7 @@ type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 type IconElement = ReactElement<SVGProps<SVGSVGElement>>;
 type TooltipIcon = IconComponent | IconElement;
 type TooltipOrientation = 'top' | 'bottom' | 'left' | 'right';
+type TooltipLinkTarget = AnchorHTMLAttributes<HTMLAnchorElement>['target'];
 
 interface BaseTooltipProps {
   tooltipContent: string;
@@ -29,6 +31,10 @@ type TooltipProps = BaseTooltipProps &
         height?: number;
         Icon?: never;
         iconLabel?: never;
+        href?: never;
+        linkLabel?: never;
+        target?: never;
+        rel?: never;
       }
     | {
         Icon: TooltipIcon;
@@ -37,6 +43,22 @@ type TooltipProps = BaseTooltipProps &
         src?: never;
         width?: never;
         height?: never;
+        href?: never;
+        linkLabel?: never;
+        target?: never;
+        rel?: never;
+      }
+    | {
+        href: string;
+        linkLabel: string;
+        target?: TooltipLinkTarget;
+        rel?: string;
+        alt?: never;
+        src?: never;
+        width?: never;
+        height?: never;
+        Icon?: never;
+        iconLabel?: never;
       }
   );
 
@@ -54,6 +76,7 @@ export const Tooltip = (props: TooltipProps) => {
   const { tooltipContent, orientation = 'top', className, tooltipClassName } = props;
   const tooltipId = useId();
   const isFocusable = props.focusable ?? 'src' in props;
+  const isLink = 'href' in props;
 
   const imageClassName = [
     'block h-auto max-w-none transition-[filter] duration-150',
@@ -62,8 +85,13 @@ export const Tooltip = (props: TooltipProps) => {
     .filter(Boolean)
     .join(' ');
 
+  const tooltipFocusClassName = isLink
+    ? 'group-focus-within/tooltip:block group-focus-within/tooltip:opacity-100'
+    : 'group-focus-visible/tooltip:block group-focus-visible/tooltip:opacity-100';
+
   const tooltipClassNames = [
-    'pointer-events-none absolute z-20 hidden whitespace-nowrap rounded-[2px] bg-[#0a0a0a] px-3 py-2 font-sans text-[12px] leading-none text-white opacity-0 shadow-[0_6px_16px_rgb(0_0_0/0.35)] transition-opacity duration-150 group-hover/tooltip:block group-hover/tooltip:opacity-100 group-focus-visible/tooltip:block group-focus-visible/tooltip:opacity-100',
+    'pointer-events-none absolute z-20 hidden whitespace-nowrap rounded-[2px] bg-[#0a0a0a] px-3 py-2 font-sans text-[12px] leading-none text-white opacity-0 shadow-[0_6px_16px_rgb(0_0_0/0.35)] transition-opacity duration-150 group-hover/tooltip:block group-hover/tooltip:opacity-100',
+    tooltipFocusClassName,
     tooltipOrientationClassNames[orientation],
     tooltipClassName ?? '',
   ]
@@ -90,6 +118,23 @@ export const Tooltip = (props: TooltipProps) => {
       );
     }
 
+    if ('href' in props) {
+      const target = props.target ?? '_blank';
+      const rel = props.rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined);
+
+      return (
+        <a
+          aria-describedby={tooltipId}
+          className={className}
+          href={props.href}
+          rel={rel}
+          target={target}
+        >
+          {props.linkLabel}
+        </a>
+      );
+    }
+
     const accessibleIconProps = {
       'aria-label': props.iconLabel ?? tooltipContent,
       className: iconClassName,
@@ -112,9 +157,9 @@ export const Tooltip = (props: TooltipProps) => {
 
   return (
     <span
-      aria-describedby={tooltipId}
+      aria-describedby={isLink ? undefined : tooltipId}
       className="group/tooltip relative inline-flex items-center align-middle focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
-      tabIndex={isFocusable ? 0 : undefined}
+      tabIndex={!isLink && isFocusable ? 0 : undefined}
     >
       {tooltipTarget}
       <span id={tooltipId} role="tooltip" className={tooltipClassNames}>
