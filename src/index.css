@@ -18,12 +18,30 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Space Grotesk Variable';
+  src: url('/webfonts/space-grotesk/SpaceGrotesk[wght].woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arrow Type Variable';
+  src: url('/webfonts/arrow-type/Recursive_VF_1.085.woff2') format('woff2');
+  font-weight: 300 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   /* --font-body: 'EB Garamond Variable', serif; */
+  /* --font-body: 'Space Grotesk Variable', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji'; */
 
   --font-body:
-    system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+    'Arrow Type Variable', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
 
   --color-bg: #ffffff;
   --color-bg-gradient: linear-gradient(180deg, #f6f6f6 0%, #ffffff 100%);
