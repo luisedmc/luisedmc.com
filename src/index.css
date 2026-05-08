@@ -35,88 +35,44 @@
 }
 
 @theme {
-  /* --font-body: 'EB Garamond Variable', serif; */
-  /* --font-body: 'Space Grotesk Variable', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji'; */
-
   --font-body:
     'Arrow Type Variable', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-ui:
+    'Space Grotesk Variable', system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-detail: 'EB Garamond Variable', Georgia, serif;
 
   --color-bg: #ffffff;
-  --color-bg-gradient: linear-gradient(180deg, #f6f6f6 0%, #ffffff 100%);
-  --color-bg-variant: #f5f5f5;
-  --color-fg: #171717;
-  --color-fg-muted: #737373;
-  --color-border: #ffffff;
-  --color-selection-bg: #171717;
+  --color-fg: #000000;
+  --color-muted: #6f6a62;
+  --color-line: #d7d1c7;
+  --color-red: #e83f4f;
+  --color-blue: #1842ea;
+  --color-purple: #7b3ff2;
+  --color-fg-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted);
+  --color-border: var(--color-line);
+  --color-selection-bg: var(--color-red);
   --color-selection-fg: #ffffff;
 }
 
 .dark {
   --color-bg: #000000;
-  --color-bg-gradient: linear-gradient(180deg, #030303 0%, #000000 100%);
-  --color-bg-variant: #0a0a0a;
-  --color-fg: #e5e5e5;
-  --color-fg-muted: #a3a3a3;
-  --color-border: #000000;
-  --color-selection-bg: #e5e5e5;
-  --color-selection-fg: #000000;
+  --color-fg: #ffffff;
+  --color-muted: #8d887f;
+  --color-line: #2a2722;
+  --color-red: #e83f4f;
+  --color-blue: #1842ea;
+  --color-purple: #7b3ff2;
+  --color-fg-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted);
+  --color-border: var(--color-line);
+  --color-selection-bg: var(--color-red);
+  --color-selection-fg: var(--color-fg);
 }
 
 @layer components {
-  .feature-option-group {
-    display: inline-flex;
-    align-items: center;
-    column-gap: 0.75rem;
-    color: var(--color-fg);
-    font-size: 1.75rem;
-    font-weight: 650;
-    line-height: 1;
-    white-space: nowrap;
-  }
-
-  .feature-option-group__option-wrap {
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .feature-option-group__bracket {
-    color: var(--color-fg-muted);
-    user-select: none;
-  }
-
-  .feature-option-group__option {
-    appearance: none;
-    border: 0;
-    border-radius: 2px;
-    background: transparent;
-    color: var(--color-fg-muted);
-    cursor: pointer;
-    font: inherit;
-    padding: 0.125rem 0.0625rem;
-    text-shadow: none;
-    transition:
-      color 150ms ease,
-      text-shadow 150ms ease;
-  }
-
-  .feature-option-group__option:hover,
-  .feature-option-group__option:focus-visible {
-    color: var(--color-fg);
-  }
-
-  .feature-option-group__option:focus-visible {
-    outline: 1px solid var(--color-fg-muted);
-    outline-offset: 2px;
-  }
-
-  .feature-option-group__option[aria-pressed='true'] {
-    color: var(--color-fg);
-    cursor: default;
-    text-shadow: 0 0 0.01px currentColor;
-  }
-
   :root[data-alignment='center'] .ui-container--aligned {
     margin-inline: auto;
   }
@@ -128,23 +84,30 @@
 
 @layer base {
   html {
+    color-scheme: light;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
     @apply min-h-screen font-body;
-    font-size: 0.89rem;
+    font-size: 1rem;
     line-height: 1.6;
     background-color: var(--color-bg);
-    background-image: var(--color-bg-gradient);
     color: var(--color-fg);
-    transition:
-      background-color 150ms ease,
-      background-image 150ms ease,
-      color 150ms ease;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  header,
+  nav,
+  footer {
+    font-family: var(--font-ui);
   }
 
   a {
@@ -155,13 +118,33 @@
   }
 
   a:hover {
-    color: var(--color-fg-muted);
+    color: var(--color-blue);
+  }
+
+  a[href]::after {
+    content: ' ↗';
+    display: inline;
+    margin-left: 0;
+    font-family: var(--font-ui);
+    font-size: 0.95em;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  a[aria-label]::after {
+    content: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 1px solid var(--color-red);
+    outline-offset: 2px;
   }
 
   *,
   *::before,
   *::after {
-    border-color: var(--color-border);
+    border-color: var(--color-line);
   }
 
   ::selection {
