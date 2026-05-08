@@ -6,10 +6,10 @@ export const dictionary = {
     items: [
       'Sou Luis Eduardo Meduna Cabreira, um estudante de Ciência da Computação atualmente trabalhando como Desenvolvedor Full-Stack na [@redacted].',
       'Tenho interesse em software performático, desenvolvimento de baixo nível, sistemas operacionais, minimalismo, linux, neovim e microcontroladores.',
-      'no momento, estou focado em melhorar minhas habilidades com React e design.',
+      'No momento estou focado em melhorar minhas habilidades com React e Design, enquanto continuo explorando low-level no tempo livre.',
     ],
     games: {
-      prefix: 'ocasionalmente jogo',
+      prefix: 'Ocasionalmente jogo',
       cs2Label: 'Counter-Strike 2',
       suffix: 'e jogos single-player focados em história.',
     },

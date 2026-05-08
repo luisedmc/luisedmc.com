@@ -6,7 +6,7 @@ export const dictionary = {
     items: [
       "I'm Luis Eduardo Meduna Cabreira, a Computer Science undergraduate currently working as a Full-Stack Developer at [@redacted].",
       'Interested in performative software, low-level development, operating systems, minimalism, linux, neovim and microcontrollers.',
-      "Right now, I'm focused on improving my React and design skills.",
+      "Right now, I'm focused on improving my React and design skills while exploring low-level development in my free time.",
     ],
     games: {
       prefix: 'I occasionally play',
