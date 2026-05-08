@@ -1,31 +1,33 @@
-import MoonAltLoopIcon from '~icons/line-md/moon-alt-loop';
-import SunnyOutlineLoopIcon from '~icons/line-md/sunny-outline-loop';
-import { Tooltip } from '@/components/ui/Tooltip';
+import {
+  FeatureOptionGroup,
+  type FeatureOption,
+} from '@/components/ui/FeatureOptionGroup';
 import { useTheme } from './hooks';
+import type { Theme } from './interfaces';
 
-const themeLabels = {
-  light: 'Switch to light theme',
-  dark: 'Switch to dark theme',
-} as const;
+const themeOptions = [
+  {
+    value: 'light',
+    label: 'Light',
+    ariaLabel: 'Set theme to light',
+  },
+  {
+    value: 'dark',
+    label: 'Dark',
+    ariaLabel: 'Set theme to dark',
+  },
+] as const satisfies readonly FeatureOption<Theme>[];
 
 export const ThemeSelector = () => {
-  const { theme, switchTheme } = useTheme();
-  const nextTheme = theme === 'light' ? 'dark' : 'light';
-  const Icon = theme === 'dark' ? MoonAltLoopIcon : SunnyOutlineLoopIcon;
+  const { theme, setTheme } = useTheme();
 
   return (
-    <button
-      type="button"
-      onClick={switchTheme}
-      aria-label={themeLabels[nextTheme]}
-      className="theme-selector inline-flex cursor-pointer items-center gap-1 rounded-sm px-0.5 leading-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
-    >
-      <Tooltip
-        Icon={<Icon />}
-        tooltipContent={themeLabels[nextTheme]}
-        className="theme-selector__icon size-6 shrink-0"
-        orientation="bottom"
-      />
-    </button>
+    <FeatureOptionGroup
+      ariaLabel="Theme options"
+      className="theme-selector"
+      onChange={setTheme}
+      options={themeOptions}
+      value={theme}
+    />
   );
 };

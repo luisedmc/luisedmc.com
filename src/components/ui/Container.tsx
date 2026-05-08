@@ -17,12 +17,12 @@ interface IContainer {
 
 export const Container = ({
   children,
-  size = 'md',
+  size = 'full',
   customSize,
   customStyle,
 }: IContainer) => {
   const className = [
-    'min-w-0 ui-container--aligned p-1 px-3',
+    'min-w-0 ui-container--aligned p-4',
     customSize?.width ?? `w-full ${sizeClasses[size]}`,
     customSize?.height ?? '',
     customStyle ?? '',

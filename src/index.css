@@ -65,17 +65,56 @@
 }
 
 @layer components {
-  .alignment-selector,
-  .locale-selector,
-  .theme-selector {
+  .feature-option-group {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.75rem;
+    color: var(--color-fg);
+    font-size: 1.75rem;
+    font-weight: 650;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .feature-option-group__option-wrap {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .feature-option-group__bracket {
+    color: var(--color-fg-muted);
+    user-select: none;
+  }
+
+  .feature-option-group__option {
+    appearance: none;
+    border: 0;
+    border-radius: 2px;
+    background: transparent;
+    color: var(--color-fg-muted);
+    cursor: pointer;
+    font: inherit;
+    padding: 0.125rem 0.0625rem;
+    text-shadow: none;
+    transition:
+      color 150ms ease,
+      text-shadow 150ms ease;
+  }
+
+  .feature-option-group__option:hover,
+  .feature-option-group__option:focus-visible {
     color: var(--color-fg);
   }
 
-  .alignment-selector__icon,
-  .locale-selector__icon,
-  .theme-selector__icon {
-    display: block;
-    overflow: visible;
+  .feature-option-group__option:focus-visible {
+    outline: 1px solid var(--color-fg-muted);
+    outline-offset: 2px;
+  }
+
+  .feature-option-group__option[aria-pressed='true'] {
+    color: var(--color-fg);
+    cursor: default;
+    text-shadow: 0 0 0.01px currentColor;
   }
 
   :root[data-alignment='center'] .ui-container--aligned {
@@ -97,7 +136,7 @@
 
   body {
     @apply min-h-screen font-body;
-    font-size: 0.99rem;
+    font-size: 0.89rem;
     line-height: 1.6;
     background-color: var(--color-bg);
     background-image: var(--color-bg-gradient);

@@ -50,7 +50,7 @@ export const Footer = () => {
             and
             <ComputerIcon aria-hidden="true" className="size-4 shrink-0" />
           </span>
-          <span>All rights reserved &copy; Luis Eduardo Meduna 2026</span>
+          <span>All rights reserved &copy; Luis E. M. Cabreira - 2026</span>
           {/* <Link className="text-fg" to={routes.changelog}>
             changelog
           </Link> */}
