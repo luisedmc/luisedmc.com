@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 
 const sizeClasses = {
-  full: 'max-w-full',
-  xl: 'max-w-7xl',
-  lg: 'max-w-5xl',
-  md: 'max-w-3xl',
-  sm: 'max-w-xl',
+  full: 'container-page',
+  xl: 'container-page',
+  lg: 'container-page',
+  md: 'container-reading',
+  sm: 'container-narrow',
 } as const;
 
 interface IContainer {
@@ -22,8 +22,8 @@ export const Container = ({
   customStyle,
 }: IContainer) => {
   const className = [
-    'min-w-0 ui-container--aligned p-4',
-    customSize?.width ?? `w-full ${sizeClasses[size]}`,
+    'ui-container ui-container--aligned',
+    customSize?.width ?? sizeClasses[size],
     customSize?.height ?? '',
     customStyle ?? '',
   ]

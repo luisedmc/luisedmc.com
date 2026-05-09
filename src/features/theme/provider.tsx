@@ -16,11 +16,8 @@ const getInitialTheme = (): Theme => {
 
 const applyThemeToDOM = (theme: Theme): void => {
   const doc = document.documentElement;
-  doc.classList.remove('dark');
-
-  if (theme === 'dark') {
-    doc.classList.add('dark');
-  }
+  doc.classList.remove('dark', 'light');
+  doc.classList.add(theme);
 };
 
 interface IThemeProvider {

@@ -21,7 +21,7 @@ export function FeatureOptionGroup<TValue extends string>({
 }: IFeatureOptionGroup<TValue>) {
   const groupClassName = [
     'feature-option-group',
-    'inline-flex items-center gap-x-3 text-fg font-ui text-[48px] font-semibold leading-none whitespace-nowrap',
+    'inline-flex items-center gap-x-1 font-control text-[clamp(1.75rem,4.6vw,4.75rem)] font-bold leading-none tracking-[-0.055em] text-fg whitespace-nowrap',
     className ?? '',
   ]
     .filter(Boolean)
@@ -39,10 +39,10 @@ export function FeatureOptionGroup<TValue extends string>({
         const isActive = option.value === value;
         const optionClassName = [
           'feature-option-group__option',
-          'appearance-none border px-1.5 py-0.5 [font:inherit] transition-[background-color,border-color,color] duration-[120ms] focus-visible:outline focus-visible:outline-[1px] focus-visible:outline-offset-2 focus-visible:outline-red',
+          'appearance-none border bg-transparent px-[0.16em] py-[0.04em] [font:inherit] leading-none focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-red',
           isActive
-            ? 'cursor-default rounded-full border-fg bg-fg text-bg focus-visible:border-fg focus-visible:text-bg'
-            : 'cursor-pointer rounded-none border-transparent bg-transparent text-muted hover:text-blue focus-visible:border-red focus-visible:text-fg',
+            ? 'cursor-default rounded-none !border-fg !bg-fg !text-bg focus-visible:border-red'
+            : 'cursor-pointer rounded-none border-transparent !text-muted hover:border-blue hover:!text-blue focus-visible:border-red focus-visible:!text-fg',
         ].join(' ');
 
         return (

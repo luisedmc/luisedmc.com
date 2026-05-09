@@ -5,10 +5,10 @@ import { Container } from './Container';
 
 export const Navbar = () => {
   return (
-    <Container>
+    <Container customStyle="poster-page py-0">
       <header>
-        <nav className="flex min-h-12.5 items-center justify-end pt-2">
-          <div className="flex max-w-full flex-wrap items-center justify-end gap-x-3 gap-y-2 sm:gap-x-4">
+        <nav aria-label="Display controls" className="nav-shell nav-shell--poster">
+          <div className="flex max-w-full flex-wrap items-start justify-end gap-x-4 gap-y-2">
             <LocaleSelector />
             {/* <AlignmentSelector /> */}
             <ThemeSelector />

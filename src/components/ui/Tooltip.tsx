@@ -79,7 +79,7 @@ export const Tooltip = (props: TooltipProps) => {
   const isLink = 'href' in props;
 
   const imageClassName = [
-    'block h-auto max-w-none transition-[filter] duration-150',
+    'inline-block h-auto max-w-none transition-[filter]',
     className ?? '',
   ]
     .filter(Boolean)
@@ -90,7 +90,7 @@ export const Tooltip = (props: TooltipProps) => {
     : 'group-focus-visible/tooltip:block group-focus-visible/tooltip:opacity-100';
 
   const tooltipClassNames = [
-    'pointer-events-none absolute z-20 hidden whitespace-nowrap rounded-[2px] bg-[#0a0a0a] px-3 py-2 font-sans text-[12px] leading-none text-white opacity-0 shadow-[0_6px_16px_rgb(0_0_0/0.35)] transition-opacity duration-150 group-hover/tooltip:block group-hover/tooltip:opacity-100',
+    'pointer-events-none absolute z-20 hidden whitespace-nowrap rounded-none border border-fg bg-bg px-2 py-1 font-control text-[12px] leading-none text-fg opacity-0 transition-opacity group-hover/tooltip:block group-hover/tooltip:opacity-100',
     tooltipFocusClassName,
     tooltipOrientationClassNames[orientation],
     tooltipClassName ?? '',
@@ -99,7 +99,7 @@ export const Tooltip = (props: TooltipProps) => {
     .join(' ');
 
   const iconClassName = [
-    'block shrink-0 transition-[filter] duration-150',
+    'block shrink-0 transition-[filter]',
     className ?? '',
   ]
     .filter(Boolean)
@@ -158,7 +158,7 @@ export const Tooltip = (props: TooltipProps) => {
   return (
     <span
       aria-describedby={isLink ? undefined : tooltipId}
-      className="group/tooltip relative inline-flex items-center align-middle focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg-muted"
+      className="group/tooltip relative inline-flex items-center align-middle focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-red"
       tabIndex={!isLink && isFocusable ? 0 : undefined}
     >
       {tooltipTarget}

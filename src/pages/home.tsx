@@ -1,29 +1,25 @@
-import ArrowSmallRightIcon from '~icons/line-md/arrow-small-right';
 import { Container } from '@/components/ui/Container';
-import { ParticleWave } from '@/components/ui/Particles';
+// import { ParticleWave } from '@/components/ui/Particles';
 import { Tooltip } from '@/components/ui/Tooltip';
 import { useDictionary } from '@/features/i18n/hooks';
 
 export const Home = () => {
   const { me, experience, projects, configs } = useDictionary('home');
-  const sectionClassName = 'mt-6 space-y-2';
+  const sectionClassName = 'home-section';
+  const sectionTitleClassName = 'home-section-title';
 
   return (
-    <Container>
-      <section>
+    <Container customStyle="space-y-14 sm:space-y-20">
+      {/* <section aria-label="Particle field" className="pb-2">
         <ParticleWave />
-      </section>
+      </section> */}
 
       <section aria-labelledby="home-me-title" className={sectionClassName}>
-        <h2
-          id="home-me-title"
-          className="inline-flex items-center gap-1 text-base font-bold"
-        >
-          <ArrowSmallRightIcon aria-hidden="true" className="size-5 shrink-0" />
-          <span>{me.title}</span>
-        </h2>
+        <h1 id="home-me-title" className={sectionTitleClassName}>
+          {me.title}
+        </h1>
 
-        <div className="space-y-4">
+        <div className="max-w-3xl space-y-4 text-md">
           {me.items.map(item => (
             <p key={item}>{item}</p>
           ))}
@@ -31,7 +27,7 @@ export const Home = () => {
             <span>{me.games.prefix} </span>
             <Tooltip
               alt={me.games.cs2Label}
-              className="h-9 w-9 brightness-0 dark:invert"
+              className="inline h-7 w-7 brightness-0 dark:invert"
               src="/imgs/games/cs2_logo.ico"
               tooltipContent={me.games.cs2Label}
             />
@@ -41,86 +37,66 @@ export const Home = () => {
       </section>
 
       <section aria-labelledby="home-experience-title" className={sectionClassName}>
-        <h2
-          id="home-experience-title"
-          className="inline-flex items-center gap-1 text-base font-bold"
-        >
-          <ArrowSmallRightIcon aria-hidden="true" className="size-5 shrink-0" />
-          <span>{experience.title}</span>
+        <h2 id="home-experience-title" className={sectionTitleClassName}>
+          {experience.title}
         </h2>
 
-        <div className="space-y-4">
+        <div className="home-entry-list">
           {experience.roles.map(role => (
-            <p key={role.name}>
-              <span className="inline-flex items-center gap-2">
-                {role.current ? (
-                  <span
-                    aria-hidden="true"
-                    className="size-2 shrink-0 animate-pulse rounded-full bg-green-500"
-                  />
-                ) : null}
-                <span>{role.name}</span>
-              </span>{' '}
-              at {role.company} ({role.period})
-            </p>
+            <article key={role.name} className="home-entry">
+              <h3 className="home-entry-title">{role.name}</h3>
+              <p className="home-entry-description">
+                {role.company} / {role.period}
+              </p>
+            </article>
           ))}
         </div>
       </section>
 
       <section aria-labelledby="home-projects-title" className={sectionClassName}>
-        <h2
-          id="home-projects-title"
-          className="inline-flex items-center gap-1 text-base font-bold"
-        >
-          <ArrowSmallRightIcon aria-hidden="true" className="size-5 shrink-0" />
-          <span>{projects.title}</span>
+        <h2 id="home-projects-title" className={sectionTitleClassName}>
+          {projects.title}
         </h2>
 
-        <div className="space-y-4">
+        <div className="home-entry-list">
           {projects.projects.map(project => (
-            <p key={project.name} className="flex items-baseline gap-2">
-              <Tooltip
-                href={project.link}
-                linkLabel={project.name}
-                tooltipContent={project.link}
-              />
-              <span
-                aria-hidden="true"
-                className="mb-1 min-w-4 flex-1 border-b border-dotted border-fg-muted/40"
-              />
-              <small className="min-w-0 text-right text-muted-foreground">
-                {project.description}
-              </small>
-            </p>
+            <article key={project.name} className="home-entry">
+              <h3 className="home-entry-title">
+                <a
+                  className="link-external"
+                  href={project.link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {project.name}
+                </a>
+              </h3>
+              <p className="home-entry-description">{project.description}</p>
+            </article>
           ))}
         </div>
       </section>
 
       <section aria-labelledby="home-configs-title" className={sectionClassName}>
-        <h2
-          id="home-configs-title"
-          className="inline-flex items-center gap-1 text-base font-bold"
-        >
-          <ArrowSmallRightIcon aria-hidden="true" className="size-5 shrink-0" />
-          <span>{configs.title}</span>
+        <h2 id="home-configs-title" className={sectionTitleClassName}>
+          {configs.title}
         </h2>
 
-        <div className="space-y-4">
+        <div className="home-entry-list">
           {configs.configurations.map(config => (
-            <p key={config.name} className="flex items-baseline gap-2">
-              <Tooltip
-                href={config.link}
-                linkLabel={config.name}
-                tooltipContent={config.link}
-              />
-              <span
-                aria-hidden="true"
-                className="mb-1 min-w-4 flex-1 border-b border-dotted border-fg-muted/40"
-              />
-              <small className="min-w-0 text-right text-muted-foreground">
-                {config.description}
-              </small>
-            </p>
+            <article key={config.name} className="home-entry">
+              <h3 className="home-entry-title">
+                <a
+                  className="link-external"
+                  href={config.link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {config.name}
+                </a>
+              </h3>
+              <p className="home-entry-description">{config.description}</p>
+            </article>
           ))}
         </div>
       </section>

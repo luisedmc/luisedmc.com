@@ -12,18 +12,23 @@ interface IErrorView {
 
 const ErrorView = ({ title, subtitle, children, statusLabel }: IErrorView) => {
   return (
-    <Container>
-      <section aria-labelledby="error-page-title" className="space-y-2">
-        <div className="space-y-1">
-          <h1 id="error-page-title" className="text-base font-bold">
+    <Container size="md">
+      <section
+        aria-labelledby="error-page-title"
+        className="space-y-4 border-t border-line py-6"
+      >
+        <div className="space-y-3">
+          <h1
+            id="error-page-title"
+            className="font-control text-xl font-semibold leading-tight"
+          >
             {title}
           </h1>
           {subtitle}
+          {children}
         </div>
 
-        {children}
-
-        <p className="text-sm text-fg-muted">{statusLabel}</p>
+        <p className="text-meta">{statusLabel}</p>
       </section>
     </Container>
   );
