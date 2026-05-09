@@ -21,7 +21,7 @@ export function FeatureOptionGroup<TValue extends string>({
 }: IFeatureOptionGroup<TValue>) {
   const groupClassName = [
     'feature-option-group',
-    'inline-flex items-center gap-x-3 text-fg font-ui text-[2.77rem] font-[650] leading-none whitespace-nowrap',
+    'inline-flex items-center gap-x-3 text-fg font-ui text-[48px] font-semibold leading-none whitespace-nowrap',
     className ?? '',
   ]
     .filter(Boolean)
