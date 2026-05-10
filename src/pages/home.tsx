@@ -4,10 +4,19 @@ import { Tooltip } from '@/components/ui/Tooltip';
 import { useDictionary } from '@/features/i18n/hooks';
 import { withLinkArrow } from '@/lib/link-label';
 
+const sectionClassName = 'grid gap-[clamp(var(--space-4),3vw,var(--space-8))] py-1';
+const sectionTitleClassName =
+  'font-control text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.84] tracking-[-0.06em] text-fg';
+const entryListClassName =
+  'grid max-w-[46rem] gap-[clamp(var(--space-5),3vw,var(--space-8))]';
+const entryClassName = 'grid gap-[var(--space-1)]';
+const entryTitleClassName =
+  'font-control text-[clamp(var(--text-xl),3.2vw,var(--text-3xl))] font-[650] leading-[0.98] tracking-[-0.035em]';
+const entryDescriptionClassName =
+  'max-w-[42rem] text-[clamp(var(--text-base),1.25vw,var(--text-lg))] leading-[1.35] text-muted';
+
 export const Home = () => {
   const { me, experience, projects, configs } = useDictionary('home');
-  const sectionClassName = 'home-section';
-  const sectionTitleClassName = 'home-section-title';
 
   return (
     <Container customStyle="space-y-14 sm:space-y-20">
@@ -42,11 +51,11 @@ export const Home = () => {
           {experience.title}
         </h2>
 
-        <div className="home-entry-list">
+        <div className={entryListClassName}>
           {experience.roles.map(role => (
-            <article key={role.name} className="home-entry">
-              <h3 className="home-entry-title">{role.name}</h3>
-              <p className="home-entry-description">
+            <article key={role.name} className={entryClassName}>
+              <h3 className={entryTitleClassName}>{role.name}</h3>
+              <p className={entryDescriptionClassName}>
                 {role.company} / {role.period}
               </p>
             </article>
@@ -59,20 +68,15 @@ export const Home = () => {
           {projects.title}
         </h2>
 
-        <div className="home-entry-list">
+        <div className={entryListClassName}>
           {projects.projects.map(project => (
-            <article key={project.name} className="home-entry">
-              <h3 className="home-entry-title">
-                <a
-                  className="link-external"
-                  href={project.link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+            <article key={project.name} className={entryClassName}>
+              <h3 className={entryTitleClassName}>
+                <a href={project.link} rel="noopener noreferrer" target="_blank">
                   {withLinkArrow(project.name)}
                 </a>
               </h3>
-              <p className="home-entry-description">{project.description}</p>
+              <p className={entryDescriptionClassName}>{project.description}</p>
             </article>
           ))}
         </div>
@@ -83,20 +87,15 @@ export const Home = () => {
           {configs.title}
         </h2>
 
-        <div className="home-entry-list">
+        <div className={entryListClassName}>
           {configs.configurations.map(config => (
-            <article key={config.name} className="home-entry">
-              <h3 className="home-entry-title">
-                <a
-                  className="link-external"
-                  href={config.link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+            <article key={config.name} className={entryClassName}>
+              <h3 className={entryTitleClassName}>
+                <a href={config.link} rel="noopener noreferrer" target="_blank">
                   {withLinkArrow(config.name)}
                 </a>
               </h3>
-              <p className="home-entry-description">{config.description}</p>
+              <p className={entryDescriptionClassName}>{config.description}</p>
             </article>
           ))}
         </div>

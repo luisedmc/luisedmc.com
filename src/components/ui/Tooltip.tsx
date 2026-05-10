@@ -99,10 +99,7 @@ export const Tooltip = (props: TooltipProps) => {
     .filter(Boolean)
     .join(' ');
 
-  const iconClassName = [
-    'block shrink-0 transition-[filter]',
-    className ?? '',
-  ]
+  const iconClassName = ['block shrink-0 transition-[filter]', className ?? '']
     .filter(Boolean)
     .join(' ');
 
@@ -159,7 +156,7 @@ export const Tooltip = (props: TooltipProps) => {
   return (
     <span
       aria-describedby={isLink ? undefined : tooltipId}
-      className="group/tooltip relative inline-flex items-center align-middle focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-red"
+      className="group/tooltip relative inline-flex items-center align-middle focus-visible:outline focus-visible:outline-offset-[3px] focus-visible:outline-red"
       tabIndex={!isLink && isFocusable ? 0 : undefined}
     >
       {tooltipTarget}

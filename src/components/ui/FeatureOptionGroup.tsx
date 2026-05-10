@@ -31,23 +31,23 @@ export function FeatureOptionGroup<TValue extends string>({
     <div aria-label={ariaLabel} className={groupClassName} role="group">
       <span
         aria-hidden="true"
-        className="feature-option-group__bracket select-none text-muted"
+        className="feature-option-group-bracket select-none text-muted"
       >
         [
       </span>
       {options.map(option => {
         const isActive = option.value === value;
         const optionClassName = [
-          'feature-option-group__option',
+          'feature-option-group-option',
           'appearance-none border border-transparent bg-transparent px-[0.16em] py-[0.04em] [font:inherit] leading-none transition-[color,transform] duration-200 ease-out focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-red motion-reduce:transition-none',
           isActive
-            ? 'cursor-default rounded-none !border-transparent !bg-transparent !text-fg focus-visible:border-red'
-            : 'cursor-pointer rounded-none !text-muted hover:-translate-y-[0.03em] hover:!text-fg focus-visible:border-red focus-visible:!text-fg motion-reduce:hover:translate-y-0',
+            ? 'cursor-default rounded-none border-transparent bg-transparent text-fg hover:border-transparent hover:bg-transparent hover:text-fg focus-visible:border-red'
+            : 'cursor-pointer rounded-none text-muted hover:-translate-y-[0.03em] hover:text-fg focus-visible:border-red focus-visible:text-fg motion-reduce:hover:translate-y-0',
         ].join(' ');
 
         return (
           <span
-            className="feature-option-group__option-wrap inline-flex items-center"
+            className="feature-option-group-option-wrap inline-flex items-center"
             key={option.value}
           >
             <button
@@ -68,7 +68,7 @@ export function FeatureOptionGroup<TValue extends string>({
       })}
       <span
         aria-hidden="true"
-        className="feature-option-group__bracket select-none text-muted"
+        className="feature-option-group-bracket select-none text-muted"
       >
         ]
       </span>

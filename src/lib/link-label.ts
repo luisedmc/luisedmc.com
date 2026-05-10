@@ -1,1 +1,1 @@
-export const withLinkArrow = (label: string) => `${label}\u00a0↗`;
+export const withLinkArrow = (label: string | undefined) => `${label}\u00a0↗`;
