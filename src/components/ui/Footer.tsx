@@ -1,4 +1,5 @@
 import { socialLinks } from '@/content/social';
+import { withLinkArrow } from '@/lib/link-label';
 import { Container } from './Container';
 
 export const Footer = () => {
@@ -12,16 +13,12 @@ export const Footer = () => {
             return (
               <a
                 key={href}
-                className={
-                  isExternal
-                    ? 'footer-poster__link link-external'
-                    : 'footer-poster__link'
-                }
+                className="footer-poster__link"
                 href={href}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
                 target={isExternal ? '_blank' : undefined}
               >
-                {label}
+                {withLinkArrow(label)}
               </a>
             );
           })}

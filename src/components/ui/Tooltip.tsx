@@ -7,6 +7,7 @@ import {
   type SVGProps,
   useId,
 } from 'react';
+import { withLinkArrow } from '@/lib/link-label';
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 type IconElement = ReactElement<SVGProps<SVGSVGElement>>;
@@ -130,7 +131,7 @@ export const Tooltip = (props: TooltipProps) => {
           rel={rel}
           target={target}
         >
-          {props.linkLabel}
+          {withLinkArrow(props.linkLabel)}
         </a>
       );
     }

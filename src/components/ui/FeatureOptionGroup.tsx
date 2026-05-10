@@ -39,10 +39,10 @@ export function FeatureOptionGroup<TValue extends string>({
         const isActive = option.value === value;
         const optionClassName = [
           'feature-option-group__option',
-          'appearance-none border bg-transparent px-[0.16em] py-[0.04em] [font:inherit] leading-none focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-red',
+          'appearance-none border border-transparent bg-transparent px-[0.16em] py-[0.04em] [font:inherit] leading-none transition-[color,transform] duration-200 ease-out focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-offset-[3px] focus-visible:outline-red motion-reduce:transition-none',
           isActive
-            ? 'cursor-default rounded-none !border-fg !bg-fg !text-bg focus-visible:border-red'
-            : 'cursor-pointer rounded-none border-transparent !text-muted hover:border-blue hover:!text-blue focus-visible:border-red focus-visible:!text-fg',
+            ? 'cursor-default rounded-none !border-transparent !bg-transparent !text-white focus-visible:border-red'
+            : 'cursor-pointer rounded-none !text-muted hover:-translate-y-[0.03em] hover:!text-fg focus-visible:border-red focus-visible:!text-fg motion-reduce:hover:translate-y-0',
         ].join(' ');
 
         return (

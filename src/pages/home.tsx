@@ -2,6 +2,7 @@ import { Container } from '@/components/ui/Container';
 // import { ParticleWave } from '@/components/ui/Particles';
 import { Tooltip } from '@/components/ui/Tooltip';
 import { useDictionary } from '@/features/i18n/hooks';
+import { withLinkArrow } from '@/lib/link-label';
 
 export const Home = () => {
   const { me, experience, projects, configs } = useDictionary('home');
@@ -27,7 +28,7 @@ export const Home = () => {
             <span>{me.games.prefix} </span>
             <Tooltip
               alt={me.games.cs2Label}
-              className="inline h-7 w-7 brightness-0 dark:invert"
+              className="inline h-10 w-10 brightness-0 dark:invert"
               src="/imgs/games/cs2_logo.ico"
               tooltipContent={me.games.cs2Label}
             />
@@ -68,7 +69,7 @@ export const Home = () => {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  {project.name}
+                  {withLinkArrow(project.name)}
                 </a>
               </h3>
               <p className="home-entry-description">{project.description}</p>
@@ -92,7 +93,7 @@ export const Home = () => {
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  {config.name}
+                  {withLinkArrow(config.name)}
                 </a>
               </h3>
               <p className="home-entry-description">{config.description}</p>
