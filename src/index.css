@@ -238,7 +238,7 @@
     align-self: center;
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: clamp(var(--space-4), 2.5vw, var(--space-8));
   }
 
   .footer-poster__link {
