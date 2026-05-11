@@ -15,12 +15,8 @@ const navClassName = [
   'max-[640px]:[&_.feature-option-group]:text-[clamp(1.45rem,9.4vw,2.55rem)]',
   'max-[640px]:[&_.feature-option-group]:tracking-[-0.035em]',
   '[&_.feature-option-group-bracket]:hidden',
-  '[&_.feature-option-group-option]:rounded-none',
-  '[&_.feature-option-group-option]:border-transparent',
-  '[&_.feature-option-group-option]:px-[0.16em]',
   '[&_.feature-option-group-option]:pt-[0.02em]',
   '[&_.feature-option-group-option]:pb-[0.1em]',
-  '[&_.feature-option-group-option]:no-underline',
 ].join(' ');
 
 export const Navbar = () => {

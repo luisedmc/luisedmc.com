@@ -30,7 +30,7 @@ export const dictionary = {
     projects: [
       {
         name: 'ghcmd',
-        description: 'Uma interface de usuário de terminal para operações do GitHub',
+        description: 'Interface no terminal para operações do GitHub',
         link: 'https://github.com/luisedmc/ghcmd',
       },
       {

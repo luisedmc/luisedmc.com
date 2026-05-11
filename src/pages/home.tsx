@@ -5,12 +5,12 @@ import { withLinkArrow } from '@/lib/link-label';
 
 const sectionClassName = 'grid gap-[clamp(var(--space-4),3vw,var(--space-8))] py-1';
 const sectionTitleClassName =
-  'font-control text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.84] tracking-[-0.06em] text-fg';
+  'text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.84] tracking-[-0.06em]';
 const entryListClassName =
   'grid max-w-[46rem] gap-[clamp(var(--space-5),3vw,var(--space-8))]';
 const entryClassName = 'grid gap-[var(--space-1)]';
 const entryTitleClassName =
-  'font-control text-[clamp(var(--text-xl),3.2vw,var(--text-3xl))] font-[650] leading-[0.98] tracking-[-0.035em]';
+  'text-[clamp(var(--text-xl),3.2vw,var(--text-3xl))] font-[650] leading-[0.98] tracking-[-0.035em]';
 const entryDescriptionClassName =
   'max-w-[42rem] text-[clamp(var(--text-base),1.25vw,var(--text-lg))] leading-[1.35] text-muted';
 

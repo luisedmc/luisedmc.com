@@ -185,11 +185,6 @@
     color: var(--color-blue);
   }
 
-  :focus-visible {
-    outline: 2px solid var(--color-blue);
-    outline-offset: 3px;
-  }
-
   h1,
   h2,
   h3 {
@@ -251,11 +246,6 @@
     font-family: var(--font-control);
     font-size: var(--text-sm);
     font-weight: 600;
-  }
-
-  ::selection {
-    background-color: var(--color-muted);
-    color: var(--color-bg);
   }
 
   @media (prefers-reduced-motion: reduce) {
