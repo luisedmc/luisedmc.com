@@ -1,6 +1,5 @@
 import { Container } from '@/components/ui/Container';
 // import { ParticleWave } from '@/components/ui/Particles';
-import { Tooltip } from '@/components/ui/Tooltip';
 import { useDictionary } from '@/features/i18n/hooks';
 import { withLinkArrow } from '@/lib/link-label';
 
@@ -35,11 +34,10 @@ export const Home = () => {
           ))}
           <p>
             <span>{me.games.prefix} </span>
-            <Tooltip
+            <img
               alt={me.games.cs2Label}
               className="inline h-10 w-10 brightness-0 dark:invert"
               src="/imgs/games/cs2_logo.ico"
-              tooltipContent={me.games.cs2Label}
             />
             <span> {me.games.suffix}</span>
           </p>
