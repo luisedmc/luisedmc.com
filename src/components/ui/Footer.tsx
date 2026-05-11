@@ -11,7 +11,8 @@ const footerNavClassName =
 const footerLinkClassName =
   'w-fit font-control text-[clamp(2.4rem,6.8vw,7.5rem)] font-bold leading-[0.82] tracking-[-0.06em] text-fg decoration-[0.05em] underline-offset-[0.1em] hover:text-blue';
 const footerDetailsClassName =
-  'flex self-stretch justify-self-end gap-[var(--space-4)] font-mono text-xs leading-[1.2] tracking-[0.02em] text-muted uppercase rotate-180 [writing-mode:vertical-rl] max-[900px]:justify-self-start max-[900px]:rotate-0 max-[900px]:[writing-mode:horizontal-tb]';
+  'flex flex-col self-stretch justify-self-end gap-[var(--space-4)] font-mono text-xs leading-[1.2] tracking-[0.02em] text-muted uppercase rotate-180 [writing-mode:vertical-rl] max-[900px]:flex-row max-[900px]:justify-self-start max-[900px]:rotate-0 max-[900px]:[writing-mode:horizontal-tb]';
+const footerLegalClassName = 'flex gap-[var(--space-4)] max-[900px]:flex-row';
 
 export const Footer = () => {
   return (
@@ -39,8 +40,11 @@ export const Footer = () => {
         </nav>
 
         <div className={footerDetailsClassName}>
-          <span>Made with time and a computer.</span>
-          <span>All rights reserved &copy; Luis E. M. Cabreira.</span>
+          <span>Best viewed on a desktop display.</span>
+          <span className={footerLegalClassName}>
+            <span>Made with time and a computer.</span>
+            <span>All rights reserved &copy; Luis E. M. Cabreira.</span>
+          </span>
         </div>
       </Container>
     </footer>

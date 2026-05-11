@@ -77,7 +77,7 @@
   --space-20: 5rem;
   --space-24: 6rem;
 
-  --container-page: min(100% - 2rem, 1120px);
+  --container-page: min(100% - 2rem, 120ch);
   --container-reading: min(100% - 2rem, 72ch);
   --container-narrow: min(100% - 2rem, 48rem);
   --page-padding-y: clamp(1rem, 3vw, 2rem);
@@ -186,7 +186,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-red);
+    outline: 2px solid var(--color-blue);
     outline-offset: 3px;
   }
 
