@@ -1,69 +1,76 @@
 <!doctype html>
 <html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="I'm Luis Eduardo Meduna Cabreira, a Computer Science undergraduate and Full-Stack Developer located in Brazil."
+    />
+    <meta name=" theme-color" content="#000000" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="I'm Luis Eduardo Meduna Cabreira, a Computer Science undergraduate and Full-Stack Developer located in Brazil." />
-  <meta name=" theme-color" content="#000000" />
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Luis Eduardo." />
+    <meta
+      property="og:description"
+      content="I'm Luis Eduardo Meduna Cabreira, a Computer Science undergraduate and Full-Stack Developer located in Brazil."
+    />
 
-  <!-- open graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Luis Eduardo." />
-  <meta property="og:description"
-    content="I'm Luis Eduardo Meduna Cabreira, a Computer Science undergraduate and Full-Stack Developer located in Brazil." />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const isValidTheme = value => value === 'light' || value === 'dark';
+        const isValidAlignment = value =>
+          value === 'start' || value === 'center' || value === 'end';
+        const normalizeLocale = value => {
+          if (typeof value !== 'string') return null;
 
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const isValidTheme = value => value === 'light' || value === 'dark';
-      const isValidAlignment = value =>
-        value === 'start' || value === 'center' || value === 'end';
-      const normalizeLocale = value => {
-        if (typeof value !== 'string') return null;
+          const normalized = value.toLowerCase();
 
-        const normalized = value.toLowerCase();
+          if (normalized === 'en-us') return 'en-US';
+          if (normalized === 'pt-br') return 'pt-BR';
 
-        if (normalized === 'en-us') return 'en-US';
-        if (normalized === 'pt-br') return 'pt-BR';
+          return null;
+        };
+        let theme = 'dark';
+        let alignment = 'center';
+        let locale = 'en-US';
 
-        return null;
-      };
-      let theme = 'dark';
-      let alignment = 'center';
-      let locale = 'en-US';
+        try {
+          const storedTheme = localStorage.getItem('theme');
+          if (isValidTheme(storedTheme)) theme = storedTheme;
 
-      try {
-        const storedTheme = localStorage.getItem('theme');
-        if (isValidTheme(storedTheme)) theme = storedTheme;
+          const storedAlignment = localStorage.getItem('alignment');
+          if (isValidAlignment(storedAlignment)) {
+            alignment = storedAlignment;
+          }
 
-        const storedAlignment = localStorage.getItem('alignment');
-        if (isValidAlignment(storedAlignment)) {
-          alignment = storedAlignment;
-        }
+          const storedLocale = normalizeLocale(localStorage.getItem('locale'));
+          if (storedLocale) locale = storedLocale;
+        } catch {}
 
-        const storedLocale = normalizeLocale(localStorage.getItem('locale'));
-        if (storedLocale) locale = storedLocale;
-      } catch { }
+        if (theme === 'dark') root.classList.add('dark');
+        root.dataset.alignment = alignment;
+        root.lang = locale;
+        root.dir = 'ltr';
+      })();
+    </script>
 
-      if (theme === 'dark') root.classList.add('dark');
-      root.dataset.alignment = alignment;
-      root.lang = locale;
-      root.dir = 'ltr';
-    })();
-  </script>
+    <link
+      rel="preload"
+      href="/webfonts/arrow-type/Recursive_VF_1.085.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
-  <link rel="preload" href="/webfonts/arrow-type/Recursive_VF_1.085.woff2" as="font" type="font/woff2"
-    crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>luis plaza.</title>
+  </head>
 
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <title>luis plaza.</title>
-</head>
-
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

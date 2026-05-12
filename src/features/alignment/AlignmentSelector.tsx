@@ -1,6 +1,6 @@
 import {
-  FeatureOptionGroup,
   type FeatureOption,
+  FeatureOptionGroup,
 } from '@/components/ui/FeatureOptionGroup';
 import { useAlignment } from './hooks';
 import type { Alignment } from './interfaces';

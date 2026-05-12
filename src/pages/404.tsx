@@ -18,10 +18,7 @@ const ErrorView = ({ title, subtitle, children, statusLabel }: IErrorView) => {
         className="space-y-4 border-t border-line py-6"
       >
         <div className="space-y-3">
-          <h1
-            id="error-page-title"
-            className="text-xl font-semibold leading-tight"
-          >
+          <h1 id="error-page-title" className="text-xl font-semibold leading-tight">
             {title}
           </h1>
           {subtitle}

@@ -1,6 +1,6 @@
 import {
-  FeatureOptionGroup,
   type FeatureOption,
+  FeatureOptionGroup,
 } from '@/components/ui/FeatureOptionGroup';
 import { useTheme } from './hooks';
 import type { Theme } from './interfaces';
