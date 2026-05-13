@@ -36,7 +36,7 @@ export const Home = () => {
             <span>{me.games.prefix} </span>
             <img
               alt={me.games.cs2Label}
-              className="inline h-10 w-10 brightness-0 dark:invert"
+              className="inline size-10 brightness-0 dark:invert"
               src="/imgs/games/cs2_logo.ico"
             />
             <span> {me.games.suffix}</span>
