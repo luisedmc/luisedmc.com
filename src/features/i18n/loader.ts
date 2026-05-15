@@ -1,79 +1,29 @@
+import { dictionary as brErrorsDictionary } from '@/content/i18n/br/errors';
+import { dictionary as brHomeDictionary } from '@/content/i18n/br/home';
+import { dictionary as usErrorsDictionary } from '@/content/i18n/us/errors';
+import { dictionary as usHomeDictionary } from '@/content/i18n/us/home';
 import type { DictionaryByNamespace, DictionaryFor, Locale, Namespace } from './types';
 
-type DictionaryLoaderMap = {
+type DictionaryMap = {
   [L in Locale]: {
-    [N in Namespace]: () => Promise<DictionaryByNamespace[N]>;
+    [N in Namespace]: DictionaryByNamespace[N];
   };
 };
 
-type CacheKey = `${Locale}:${Namespace}`;
-
 const dictionaries = {
   'en-US': {
-    home: () => import('@/content/i18n/us/home').then(module => module.dictionary),
-    errors: () => import('@/content/i18n/us/errors').then(module => module.dictionary),
+    home: usHomeDictionary,
+    errors: usErrorsDictionary,
   },
   'pt-BR': {
-    home: () => import('@/content/i18n/br/home').then(module => module.dictionary),
-    errors: () => import('@/content/i18n/br/errors').then(module => module.dictionary),
+    home: brHomeDictionary,
+    errors: brErrorsDictionary,
   },
-} as const satisfies DictionaryLoaderMap;
+} as const satisfies DictionaryMap;
 
-const resolvedCache = new Map<CacheKey, DictionaryByNamespace[Namespace]>();
-const inflightCache = new Map<CacheKey, Promise<DictionaryByNamespace[Namespace]>>();
-
-const getCacheKey = (locale: Locale, namespace: Namespace): CacheKey =>
-  `${locale}:${namespace}`;
-
-export const getCachedDictionary = <N extends Namespace>(
+export const getDictionary = <N extends Namespace>(
   locale: Locale,
   namespace: N,
-): DictionaryFor<N> | null => {
-  const cached = resolvedCache.get(getCacheKey(locale, namespace));
-  return (cached ?? null) as DictionaryFor<N> | null;
-};
-
-export const loadDictionary = <N extends Namespace>(
-  locale: Locale,
-  namespace: N,
-): Promise<DictionaryFor<N>> => {
-  const cacheKey = getCacheKey(locale, namespace);
-  const cachedDictionary = resolvedCache.get(cacheKey);
-
-  if (cachedDictionary) {
-    return Promise.resolve(cachedDictionary as DictionaryFor<N>);
-  }
-
-  const inflightDictionary = inflightCache.get(cacheKey);
-
-  if (inflightDictionary) {
-    return inflightDictionary as Promise<DictionaryFor<N>>;
-  }
-
-  const dictionaryPromise = dictionaries[locale][namespace]()
-    .then(dictionary => {
-      const resolvedDictionary = dictionary as DictionaryFor<N>;
-
-      resolvedCache.set(cacheKey, resolvedDictionary);
-      inflightCache.delete(cacheKey);
-      return resolvedDictionary;
-    })
-    .catch((error: unknown) => {
-      inflightCache.delete(cacheKey);
-      throw error;
-    });
-
-  inflightCache.set(
-    cacheKey,
-    dictionaryPromise as Promise<DictionaryByNamespace[Namespace]>,
-  );
-
-  return dictionaryPromise;
-};
-
-export const preloadDictionaries = async (
-  locale: Locale,
-  namespaces: readonly Namespace[],
-): Promise<void> => {
-  await Promise.all(namespaces.map(namespace => loadDictionary(locale, namespace)));
+): DictionaryFor<N> => {
+  return dictionaries[locale][namespace] as DictionaryFor<N>;
 };
