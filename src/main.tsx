@@ -11,4 +11,6 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 );
 
-reportWebVitals(console.log);
+if (import.meta.env.DEV) {
+  reportWebVitals(console.log);
+}
