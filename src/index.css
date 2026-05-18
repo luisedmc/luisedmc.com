@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@font-face {
+/* @font-face {
   font-family: 'EB Garamond Variable';
   src: url('/webfonts/eb-garamond/EBGaramond[wdth,wght].woff2') format('woff2');
   font-weight: 400 800;
@@ -16,11 +16,11 @@
   font-weight: 400 800;
   font-style: italic;
   font-display: swap;
-}
+} */
 
 @font-face {
   font-family: 'Space Grotesk Variable';
-  src: url('/webfonts/space-grotesk/SpaceGrotesk[wght].woff2') format('woff2');
+  src: url('/webfonts/space-grotesk/SpaceGrotesk-subset.woff2') format('woff2');
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: 'Arrow Type Variable';
-  src: url('/webfonts/arrow-type/Recursive_VF_1.085.woff2') format('woff2');
+  src: url('/webfonts/arrow-type/Recursive-subset.woff2') format('woff2');
   font-weight: 300 1000;
   font-style: normal;
   font-display: swap;

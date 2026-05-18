@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "npm run build && rsync -avz --delete dist/ hetzner-web:/srv/sites/luisedmc.com/"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
