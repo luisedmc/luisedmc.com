@@ -3,8 +3,6 @@ import { LocaleSelector } from '@/features/i18n/LocaleSelector';
 import { ThemeSelector } from '@/features/theme/ThemeSelector';
 import { Container } from './Container';
 
-const posterWidthClassName =
-  'w-[min(100%_-_clamp(1rem,4vw,4rem),1440px)] max-[640px]:w-[min(100%_-_1rem,100%)]';
 const navClassName = [
   'flex min-h-[clamp(4.25rem,8vw,7rem)] items-center justify-end py-3 font-control max-[640px]:min-h-[3.75rem] max-[640px]:py-2',
   '[&_.feature-option-group]:gap-x-[clamp(0.2rem,0.8vw,0.6rem)]',
@@ -21,7 +19,7 @@ const navClassName = [
 
 export const Navbar = () => {
   return (
-    <Container customSize={{ width: posterWidthClassName }} customStyle="py-0">
+    <Container customStyle="py-0">
       <header>
         <nav aria-label="Display controls" className={navClassName}>
           <div className="flex max-w-full flex-wrap items-start justify-end gap-x-4 gap-y-2">

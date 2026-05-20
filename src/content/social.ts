@@ -1,23 +1,26 @@
 export const socialLinks = [
   {
+    id: 'resume',
+    label: 'Resume',
+    href: '#',
+  },
+  {
     id: 'github',
-    label: 'GitHub',
+    label: 'github.com/luisedmc',
+    // label: 'GitHub',
     href: 'https://github.com/luisedmc',
   },
   {
     id: 'linkedin',
-    label: 'LinkedIn',
+    label: 'in/luiseduardomedunacabreira',
+    // label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/luiseduardomedunacabreira/',
   },
   {
     id: 'email',
-    label: 'Email',
+    label: 'luiseduardomc019@gmail.com',
+    // label: 'Email',
     href: 'mailto:luiseduardomc019@gmail.com',
-  },
-  {
-    id: 'resume',
-    label: 'Resume',
-    href: '#',
   },
 ] as const;
 

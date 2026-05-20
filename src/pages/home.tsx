@@ -36,6 +36,7 @@ export const Home = () => {
             <span>{me.games.prefix} </span>
             <img
               alt={me.games.cs2Label}
+              fetchPriority="high"
               width={40}
               height={40}
               className="inline size-10 brightness-0 dark:invert"
