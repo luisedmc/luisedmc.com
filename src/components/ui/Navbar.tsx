@@ -1,30 +1,41 @@
-// import { AlignmentSelector } from '@/features/alignment/AlignmentSelector';
+import { NavLink } from 'react-router';
+import { routes } from '@/app/routes';
+import { navbarContent } from '@/content/navbar';
 import { LocaleSelector } from '@/features/i18n/LocaleSelector';
 import { ThemeSelector } from '@/features/theme/ThemeSelector';
 import { Container } from './Container';
 
 const navClassName = [
-  'flex min-h-[clamp(4.25rem,8vw,7rem)] items-center justify-end py-3 font-control max-[640px]:min-h-[3.75rem] max-[640px]:py-2',
-  '[&_.feature-option-group]:gap-x-[clamp(0.2rem,0.8vw,0.6rem)]',
-  '[&_.feature-option-group]:text-[clamp(1.75rem,4.6vw,4.75rem)]',
-  '[&_.feature-option-group]:font-bold',
-  '[&_.feature-option-group]:leading-[0.85]',
-  '[&_.feature-option-group]:tracking-[-0.055em]',
-  'max-[640px]:[&_.feature-option-group]:text-[clamp(1.45rem,9.4vw,2.55rem)]',
-  'max-[640px]:[&_.feature-option-group]:tracking-[-0.035em]',
-  '[&_.feature-option-group-bracket]:hidden',
-  '[&_.feature-option-group-option]:pt-[0.02em]',
-  '[&_.feature-option-group-option]:pb-[0.1em]',
+  'flex min-h-14 flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-line py-3 font-control text-sm',
+  '[&_.feature-option-group]:text-sm',
+  '[&_.feature-option-group]:font-medium',
+  '[&_.feature-option-group]:tracking-[0.02em]',
 ].join(' ');
+
+const navLinkClassName = ({ isActive }: { isActive: boolean }) =>
+  ['underline-offset-[0.18em]', isActive ? 'text-fg' : 'text-fg hover:text-blue'].join(
+    ' ',
+  );
 
 export const Navbar = () => {
   return (
-    <Container customStyle="py-0">
+    <Container customStyle="sticky top-0 z-20 py-0">
       <header>
         <nav aria-label="Display controls" className={navClassName}>
-          <div className="flex max-w-full flex-wrap items-start justify-end gap-x-4 gap-y-2">
+          <div className="flex max-w-full flex-wrap items-center gap-x-4 gap-y-2">
+            {navbarContent.map(item => (
+              <NavLink
+                className={navLinkClassName}
+                key={item.route}
+                to={routes[item.route]}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="flex max-w-full flex-wrap items-center justify-end gap-x-4 gap-y-2">
             <LocaleSelector />
-            {/* <AlignmentSelector /> */}
             <ThemeSelector />
           </div>
         </nav>

@@ -12,16 +12,16 @@ interface IFeatureOptionGroup<TValue extends string> {
   readonly className?: string;
 }
 
-export function FeatureOptionGroup<TValue extends string>({
+export const FeatureOptionGroup = <TValue extends string>({
   ariaLabel,
   value,
   options,
   onChange,
   className,
-}: IFeatureOptionGroup<TValue>) {
+}: IFeatureOptionGroup<TValue>) => {
   const groupClassName = [
     'feature-option-group',
-    'inline-flex items-center gap-x-1 font-control text-[clamp(1.75rem,4.6vw,4.75rem)] font-bold leading-none tracking-[-0.055em] text-fg whitespace-nowrap',
+    'inline-flex items-center gap-x-1 font-control text-sm font-medium leading-none tracking-[0.02em] text-fg whitespace-nowrap',
     className ?? '',
   ]
     .filter(Boolean)
@@ -39,10 +39,10 @@ export function FeatureOptionGroup<TValue extends string>({
         const isActive = option.value === value;
         const optionClassName = [
           'feature-option-group-option',
-          'appearance-none border border-transparent px-[0.16em] py-[0.04em] [font:inherit] leading-none transition-[color,transform] duration-200 ease-out',
+          'appearance-none border border-transparent px-[0.2em] py-[0.08em] [font:inherit] leading-none transition-[border-color,color] duration-150 ease-out',
           isActive
             ? 'cursor-default border-transparent text-fg hover:border-transparent hover:text-fg'
-            : 'cursor-pointer text-muted hover:-translate-y-[0.03em] hover:text-fg',
+            : 'cursor-pointer text-muted hover:text-fg',
         ].join(' ');
 
         return (
@@ -74,4 +74,4 @@ export function FeatureOptionGroup<TValue extends string>({
       </span>
     </div>
   );
-}
+};

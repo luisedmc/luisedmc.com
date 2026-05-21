@@ -6,10 +6,10 @@ export interface INavbarItem {
 }
 
 export const navbarContent = [
-  { label: '@/www/[redacted].run', route: 'home' },
-  { label: 'm', route: 'me' },
-  { label: 'p', route: 'projects' },
-  { label: 'w', route: 'writings' },
+  { label: 'luisedmc [dot] com', route: 'home' },
+  // { label: 'm', route: 'me' },
+  // { label: 'p', route: 'projects' },
+  // { label: 'w', route: 'writings' },
   // { label: 'b', route: 'books' },
   // { label: 's', route: 'stuff' },
 ] as const satisfies readonly INavbarItem[];

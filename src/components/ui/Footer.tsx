@@ -16,7 +16,7 @@ const footerLegalClassName =
 
 export const Footer = () => {
   return (
-    <footer className="mt-[clamp(var(--space-12),9vw,var(--space-24))] border-t border-fg">
+    <footer className="mt-[clamp(var(--space-12),9vw,var(--space-24))] border-t border-line">
       <Container customStyle={footerInnerClassName}>
         <nav aria-label="Social links" className={footerNavClassName}>
           {socialLinks.map(({ href, label }) => {
